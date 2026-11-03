@@ -1,0 +1,654 @@
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>City Pods | Design-Build Contractor in Philadelphia</title><meta name="description" content="City Pods designs, builds and manages new homes and full home renovations across Philadelphia, Chester, Delaware and Montgomery counties. Licensed GC #053687. Call (610) 701-1071."></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: alternating black and stone bands, photos run to the edge; the logo's yellow uprights become the recurring accent. Committed single look (set explicitly for every viewer theme). */
+:root{
+  --ink:#0d0d0c;
+  --ink-2:#171715;
+  --ink-3:#22221f;
+  --paper:#f2f1ec;
+  --paper-2:#e6e4dc;
+  --stone:#5f5d56;
+  --mist:#a7a59c;
+  --brand:#d6c531;
+  --line-d:rgba(242,241,236,.13);
+  --line-l:#d6d3c9;
+  --f-display:"Outfit","Avenir Next","Century Gothic",system-ui,sans-serif;
+  --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --maxw:1240px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--ink)}
+img{max-width:100%}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:.98;letter-spacing:-.02em;text-wrap:balance;font-weight:700}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:500;font-size:13px;letter-spacing:.28em;text-transform:uppercase}
+.eyebrow::before{content:"";width:22px;height:3px;background:var(--brand)}
+section{padding-block:clamp(72px,10vw,128px)}
+.dark{background:var(--ink);color:var(--paper)}
+.light{background:var(--paper);color:var(--ink)}
+.dark .eyebrow{color:var(--mist)}
+.light .eyebrow{color:var(--stone)}
+.head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px 64px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.head h2{font-size:clamp(40px,6.4vw,84px);margin-top:18px}
+.head p{max-width:52ch;font-size:18px}
+.dark .head p{color:var(--mist)}
+.light .head p{color:var(--stone)}
+.hl{color:var(--brand)}
+.light .hl{color:var(--ink);background:linear-gradient(transparent 62%,var(--brand) 62% 92%,transparent 92%)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-display);font-weight:600;font-size:15px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:16px 26px;border:0;border-radius:0;cursor:pointer;transition:background .25s var(--ease),color .25s var(--ease),transform .25s var(--ease)}
+.btn .arr{transition:transform .25s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn-y{background:var(--brand);color:var(--ink)}
+.btn-y:hover{background:#e4d23b}
+.btn-o{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(242,241,236,.45)}
+.btn-o:hover{box-shadow:inset 0 0 0 1.5px var(--paper)}
+
+/* NAV */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(13,13,12,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-d)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:14px}
+.mark{display:inline-flex;text-decoration:none;color:var(--paper)}
+.lock{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.wm{font-family:var(--f-display);font-weight:800;font-size:26px;line-height:.9;letter-spacing:-.02em;white-space:nowrap}
+.wm .bar{display:inline-block;width:.16em;height:.71em;background:var(--brand);margin:0 .07em;vertical-align:baseline}
+.lock small{font-family:var(--f-display);font-weight:500;font-size:8.5px;letter-spacing:.62em;color:var(--mist);padding-left:1px}
+.nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-family:var(--f-display);font-size:15px}
+.nav ul a{text-decoration:none;color:var(--mist);transition:color .2s}
+.nav ul a:hover{color:var(--paper)}
+.nav .btn{padding:11px 18px;font-size:13px}
+.menu{display:none;background:none;border:1px solid var(--line-d);color:var(--paper);padding:8px 13px;font-family:var(--f-display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+
+/* HERO */
+.hero{padding-block:0;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);min-height:min(86vh,820px)}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;gap:28px;padding-block:72px 56px;padding-right:56px;min-width:0}
+.hero h1{font-size:clamp(54px,8.6vw,124px);font-weight:800;letter-spacing:-.035em;line-height:.9}
+.hero h1 span{display:block}
+.hero .lede{font-size:19px;max-width:46ch;color:#cfcdc4}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero-photo{position:relative;min-width:0;margin-right:calc(-1 * max(20px,env(safe-area-inset-right,0px)))}
+.hero-photo .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;opacity:0;transition:opacity 1.2s var(--ease)}
+.hero-photo .slide.on{opacity:1}
+.sl-ctl{position:absolute;left:22px;top:18px;right:16px;z-index:3;display:flex;align-items:center;gap:12px}
+.sl-dots{display:flex;gap:6px;flex:1;max-width:320px}
+.sl-dot{flex:1;height:22px;padding:0;border:0;background:none;cursor:pointer;display:flex;align-items:center}
+.sl-dot i{display:block;width:100%;height:3px;background:rgba(242,241,236,.35);position:relative;overflow:hidden}
+.sl-dot i::after{content:"";position:absolute;inset:0;background:var(--brand);transform:scaleX(0);transform-origin:left}
+.sl-dot.done i::after{transform:scaleX(1)}
+.sl-dot.on i::after{transform:scaleX(1);transition:transform var(--dur,2s) linear}
+.sl-dot.on.run i::after{animation:fill var(--dur,2s) linear both}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.sl-pause{background:rgba(13,13,12,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--paper);border:1px solid var(--line-d);font-family:var(--f-display);font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 10px;cursor:pointer}
+.hero-photo::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--brand);z-index:2}
+.hero-photo figcaption{position:absolute;right:16px;bottom:16px;z-index:2;background:rgba(13,13,12,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:10px 14px;font-family:var(--f-display);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.hero-photo figcaption b{color:var(--brand);font-weight:600}
+.trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line-d)}
+.trust div{padding:22px 20px 26px 0;display:flex;flex-direction:column;gap:4px;min-width:0}
+.trust div+div{padding-left:20px;border-left:1px solid var(--line-d)}
+.trust b{font-family:var(--f-display);font-weight:600;font-size:17px}
+.trust small{color:var(--mist);font-size:14px}
+@media (prefers-reduced-motion:no-preference){
+  .rise{animation:rise .9s var(--ease) both}
+  .rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}
+  @keyframes rise{from{transform:translateY(18px);opacity:.001}to{transform:none;opacity:1}}
+  .hero-photo .slide.on{animation:drift 3s linear both}
+  @keyframes drift{from{transform:scale(1.07)}to{transform:scale(1)}}
+}
+
+/* SERVICES */
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.card{display:flex;flex-direction:column;background:#fff;min-width:0}
+.card .ph{aspect-ratio:4/3;max-width:100%;overflow:hidden;position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
+.card:hover .ph img{transform:scale(1.05)}
+.card .ph span{position:absolute;left:0;top:0;background:var(--brand);color:var(--ink);font-family:var(--f-display);font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:8px 12px}
+.card .bd{padding:28px 28px 32px;display:flex;flex-direction:column;gap:12px;flex:1}
+.card h3{font-size:34px;letter-spacing:-.02em}
+.card p{color:var(--stone)}
+.card ul{list-style:none;margin:8px 0 0;padding:0;border-top:1px solid var(--line-l)}
+.card li{padding:10px 0;border-bottom:1px solid var(--line-l);font-size:15px;display:flex;gap:10px}
+.card li::before{content:"";width:6px;height:6px;margin-top:9px;background:var(--brand);flex:none}
+
+/* BUILD */
+.build{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:56px;align-items:stretch}
+.lists{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+.lists h3{font-size:15px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--brand);margin-bottom:8px}
+.lists ul{list-style:none;margin:0;padding:0}
+.lists li{padding:18px 0;border-bottom:1px solid var(--line-d);display:flex;flex-direction:column;gap:3px}
+.lists li b{font-family:var(--f-display);font-size:22px;font-weight:600;letter-spacing:-.01em}
+.lists li span{color:var(--mist);font-size:15px}
+.build-photo{position:relative;overflow:hidden;min-height:420px}
+.build-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.build-photo::after{content:"";position:absolute;right:0;top:0;bottom:0;width:6px;background:var(--brand)}
+
+/* GALLERY */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip{font-family:var(--f-display);font-size:14px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--ink);border:1.5px solid var(--line-l);padding:10px 16px;cursor:pointer;border-radius:999px;transition:all .2s var(--ease)}
+.chip small{color:var(--stone);font-size:12px;margin-left:6px;font-variant-numeric:tabular-nums}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chip[aria-pressed="true"] small{color:var(--brand)}
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:260px;gap:12px;grid-auto-flow:dense}
+.gallery[data-filter="all"] .feature{grid-column:span 2;grid-row:span 2}
+.gallery[data-filter="all"] .wide{grid-column:span 2}
+.gallery figure{margin:0;position:relative;overflow:hidden;background:var(--paper-2);min-width:0}
+.g-open{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
+.gallery figure::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,12,.78),rgba(13,13,12,0) 48%);pointer-events:none;transition:opacity .3s}
+.gallery figure:hover img{transform:scale(1.05)}
+.gallery figcaption{position:absolute;left:18px;right:18px;bottom:16px;z-index:1;pointer-events:none;color:#fff;font-family:var(--f-display);font-weight:600;font-size:18px;letter-spacing:-.005em;display:flex;flex-direction:column;gap:2px}
+.gallery figcaption span{font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand)}
+.gallery .feature figcaption{font-size:26px}
+
+#lb{border:0;padding:0;background:transparent;max-width:min(1100px,calc(100vw - 32px));max-height:calc(100vh - 32px);width:auto;color:var(--paper)}
+#lb::backdrop{background:rgba(8,8,7,.92);backdrop-filter:blur(6px)}
+.lb-inner{display:flex;flex-direction:column;background:var(--ink)}
+#lb-img{display:block;max-width:100%;max-height:calc(100vh - 120px);width:auto;height:auto;margin:0 auto;object-fit:contain}
+.lb-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-top:3px solid var(--brand)}
+#lb-cap{font-family:var(--f-display);font-size:16px;letter-spacing:.02em;min-width:0}
+.lb-ctl{display:flex;gap:8px}
+.lb-ctl button{background:transparent;color:var(--paper);border:1px solid var(--line-d);font-family:var(--f-display);font-size:14px;padding:8px 14px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
+.lb-ctl button:hover{border-color:var(--brand);color:var(--brand)}
+
+/* PROCESS */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));list-style:none;margin:0;padding:0;counter-reset:s;border-top:1px solid var(--line-d)}
+.steps li{counter-increment:s;padding:28px 22px 0 0;display:flex;flex-direction:column;gap:12px;min-width:0;position:relative}
+.steps li+li{padding-left:22px;border-left:1px solid var(--line-d)}
+.steps li::before{content:"0" counter(s);font-family:var(--f-display);font-weight:300;font-size:56px;line-height:1;color:var(--brand);letter-spacing:-.04em}
+.steps h3{font-size:22px;letter-spacing:-.01em}
+.steps p{color:var(--mist);font-size:15px}
+.selections{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:0;margin-top:clamp(56px,7vw,96px);background:var(--ink-2)}
+.selections .sp{position:relative;min-height:420px;overflow:hidden}
+.selections .sp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.selections .st{padding:clamp(32px,5vw,64px);display:flex;flex-direction:column;justify-content:center;gap:18px}
+.selections h3{font-size:clamp(32px,4vw,52px)}
+.selections p:not(.eyebrow){color:var(--mist);max-width:48ch}
+
+.selections .swatches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-content:center;gap:6px;padding:6px;min-height:0}
+.sw{margin:0;position:relative;aspect-ratio:1;overflow:hidden;max-width:100%}
+.sw img{position:static;width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
+.sw:hover img{transform:scale(1.06)}
+.sw figcaption{position:absolute;left:0;bottom:0;background:rgba(13,13,12,.82);color:var(--paper);font-family:var(--f-display);font-size:12px;font-weight:500;letter-spacing:.04em;padding:6px 10px}
+
+/* PHILLY */
+.philly{padding-block:0;background:var(--ink)}
+.ph-hero{position:relative;min-height:clamp(440px,62vw,680px);display:flex;align-items:flex-end;overflow:hidden}
+.ph-hero > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
+.ph-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,12,.94) 4%,rgba(13,13,12,.45) 46%,rgba(13,13,12,.05) 80%),linear-gradient(90deg,rgba(13,13,12,.55),rgba(13,13,12,0) 60%);z-index:1}
+.ph-hero .wrap{position:relative;z-index:2;width:100%;padding-block:0 clamp(40px,6vw,72px)}
+.ph-hero h2{font-size:clamp(46px,8vw,112px);font-weight:800;letter-spacing:-.035em;margin-top:18px}
+.ph-hero p.lead{font-size:19px;max-width:50ch;color:#d9d7ce;margin-top:20px}
+.hoods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding-block:12px clamp(72px,9vw,112px)}
+.hood{position:relative;margin:0;aspect-ratio:3/4;max-width:100%;overflow:hidden;background:var(--ink-2)}
+.hood img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s var(--ease)}
+.hood:hover img{transform:scale(1.06)}
+.hood::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,12,.85),rgba(13,13,12,0) 50%)}
+.hood figcaption{position:absolute;left:18px;right:18px;bottom:16px;z-index:1;display:flex;flex-direction:column;gap:4px}
+.hood b{font-family:var(--f-display);font-size:24px;font-weight:600;letter-spacing:-.01em;color:#fff}
+.hood span{font-size:14px;color:#cfcdc4}
+
+.hood-h{font-family:var(--f-display);font-size:14px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--brand);margin:clamp(36px,4vw,52px) 0 14px}
+.hoods{padding-block:0}
+.hoods.counties{grid-template-columns:repeat(3,minmax(0,1fr));padding-bottom:clamp(72px,9vw,112px)}
+.hoods.counties .hood{aspect-ratio:4/3}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:64px;align-items:start}
+.statement{font-family:var(--f-display);font-size:clamp(28px,3.6vw,46px);line-height:1.12;letter-spacing:-.02em;font-weight:500;text-wrap:balance}
+.about-body{margin-top:24px;color:var(--stone);max-width:56ch}
+.creds{border-top:2px solid var(--ink)}
+.creds div{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line-l);font-size:15px}
+.creds span{color:var(--stone)}
+.creds b{font-weight:600;text-align:right}
+.area{margin-top:clamp(56px,7vw,88px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding-top:32px;border-top:1px solid var(--line-l)}
+.area h3{font-size:14px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-bottom:14px}
+.area ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.area li{background:#fff;padding:6px 14px;border-radius:999px;font-size:14px}
+
+.about-video{margin:clamp(48px,6vw,80px) 0 0;display:flex;flex-direction:column;gap:14px}
+.about-video video{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:16/9;background:var(--ink);border-left:6px solid var(--brand)}
+.about-video figcaption{display:flex;align-items:center;gap:16px;font-family:var(--f-display);font-size:18px;font-weight:500;color:var(--ink)}
+
+/* CONTACT */
+.cta-band{background:var(--brand);color:var(--ink);padding-block:clamp(48px,6vw,72px)}
+.cta-band .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px}
+.cta-band h2{font-size:clamp(36px,5.6vw,72px);font-weight:800;letter-spacing:-.03em}
+.cta-band p{font-size:18px;max-width:40ch;margin-top:10px}
+.btn-k{background:var(--ink);color:var(--paper)}
+.btn-k:hover{background:#262622}
+.contact{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:64px}
+.info{display:flex;flex-direction:column;gap:28px}
+.info div{display:flex;flex-direction:column;gap:4px}
+.info .k{font-family:var(--f-display);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--mist)}
+.info .v{font-family:var(--f-display);font-size:24px;font-weight:500;user-select:all}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;background:var(--ink-2);padding:clamp(24px,3.4vw,40px)}
+form .full{grid-column:1/-1}
+label{display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:500;letter-spacing:.04em;color:var(--mist)}
+input,select,textarea{font:inherit;font-size:16px;color:var(--paper);background:var(--ink-3);border:1px solid transparent;border-bottom:1px solid rgba(242,241,236,.25);border-radius:0;padding:13px 14px;width:100%;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-bottom-color:var(--brand)}
+input::placeholder,textarea::placeholder{color:#77756d}
+select option{background:var(--ink-3);color:var(--paper)}
+textarea{min-height:130px;resize:vertical}
+.form-msg{grid-column:1/-1;font-size:15px;padding:13px 16px;border-left:3px solid var(--brand);background:var(--ink-3);color:var(--paper)}
+
+footer{background:#080807;color:var(--mist);padding-block:48px;font-size:14px}
+footer .wrap{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:32px;align-items:center}
+.foot-logo{display:flex;color:var(--paper)}
+.foot-logo .lock{gap:10px}
+.foot-logo .wm{font-size:40px}
+.foot-logo small{font-size:11px}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:center}
+footer nav a{text-decoration:none;color:var(--mist)}
+footer nav a:hover{color:var(--paper)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* RESPONSIVE */
+@media (max-width:1080px){
+  .steps{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:36px}
+  .steps li:nth-child(4){padding-left:0;border-left:0}
+  .gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .nav ul,.nav .btn{display:none}
+  .menu{display:block}
+  .nav .wrap{position:relative}
+  .nav ul.open{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:var(--ink);border-bottom:1px solid var(--line-d);
+    padding:8px max(20px,env(safe-area-inset-right,0px)) 18px max(20px,env(safe-area-inset-left,0px))}
+  .nav ul.open a{display:block;padding:12px 0;color:var(--paper);font-size:18px}
+  .hero-grid{grid-template-columns:1fr;min-height:0}
+  .hero-photo{order:-1;aspect-ratio:4/3;max-width:none;margin-left:calc(-1 * max(20px,env(safe-area-inset-left,0px)))}
+  .hero-photo::before{top:auto;right:0;width:auto;height:6px}
+  .hero-copy{padding-right:0;padding-block:44px 40px}
+  .trust{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trust div:nth-child(3){padding-left:0;border-left:0}
+  .trust div:nth-child(n+3){border-top:1px solid var(--line-d)}
+  .head,.build,.about,.contact,.selections{grid-template-columns:1fr}
+  .svc{grid-template-columns:1fr 1fr}
+  .build-photo{min-height:0;aspect-ratio:4/3}
+  .selections .sp{min-height:0;aspect-ratio:auto}
+  .gallery{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:230px}
+  .area{grid-template-columns:1fr}
+  .hoods{grid-template-columns:1fr 1fr}
+  .hoods.counties{grid-template-columns:1fr}
+  .hood b{font-size:18px}
+  .hood span{font-size:12px}
+  .hood figcaption{left:12px;right:12px;bottom:12px}
+  footer .wrap{grid-template-columns:1fr;justify-items:start}
+  footer nav{justify-content:flex-start}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .svc,.lists,form{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .selections .swatches{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps li,.steps li+li{padding-left:0;border-left:0}
+  .steps li+li{border-top:1px solid var(--line-d)}
+  .gallery{grid-template-columns:1fr;grid-auto-rows:300px}
+  .sl-dots{max-width:none}
+  .gallery[data-filter="all"] .feature,.gallery[data-filter="all"] .wide{grid-column:auto;grid-row:span 1}
+  .gallery[data-filter="all"] .feature{grid-row:span 2}
+  .trust{grid-template-columns:1fr}
+  .trust div,.trust div+div{padding-left:0;border-left:0}
+  .trust div+div{border-top:1px solid var(--line-d)}
+}
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="City Pods home"><span class="lock"><span class="wm" aria-hidden="true">C<i class="bar"></i>TY PODS</span><small>URBAN LIVING</small></span></a>
+    <ul id="navlinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-y" href="#contact">Free consultation</a>
+    <button class="menu" id="menubtn" aria-expanded="false" aria-controls="navlinks">Menu</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero dark">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow rise">Philadelphia area builder</p>
+        <h1 class="rise d1"><span>Design.</span><span>Build.</span><span class="hl">Deliver.</span></h1>
+        <p class="lede rise d2">New homes and full renovations across Philadelphia and its suburbs. One team takes your project from the first sketch to the final walkthrough.</p>
+        <div class="ctas rise d3">
+          <a class="btn btn-y" href="#contact">Book a free consultation <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-o" href="#projects">See our work</a>
+        </div>
+      </div>
+      <figure class="hero-photo" id="slides" aria-roledescription="carousel" aria-label="Sample City Pods projects">
+        <img class="slide on" src="img/exterior-triplex.jpg" alt="Three new brick rowhomes with metal-panel bay fronts" width="1313" height="1400" data-tag="New construction" data-title="Multi-family" fetchpriority="high">
+        <img class="slide" src="img/exterior-modern-infill.jpg" alt="New three-story City Pods rowhome with gray brick and lap-siding front, steel stair and roof deck" width="1050" height="1400" data-tag="New construction" data-title="Single-family" decoding="async">
+        <img class="slide" src="img/kitchen-island.jpg" alt="White shaker kitchen with quartz island and pendant lights" width="1400" height="1050" data-tag="Kitchen" data-title="Kitchen with island" decoding="async">
+        <img class="slide" src="img/interior-open-plan.jpg" alt="Open first floor with gray hardwood and steel stair railing" width="1050" height="1400" data-tag="Interior" data-title="Open-plan first floor" decoding="async">
+        <img class="slide" src="img/kitchen-two-tone.jpg" alt="Two-tone kitchen with copper range hood" width="1050" height="1400" data-tag="Kitchen" data-title="Two-tone kitchen" decoding="async">
+        <img class="slide" src="img/exterior-porchfront.jpg" alt="Renovated brick porch-front rowhome" width="1050" height="1400" data-tag="Renovation" data-title="Full home renovation" decoding="async">
+        <div class="sl-ctl">
+          <div class="sl-dots" role="group" aria-label="Choose a project photo"><button type="button" class="sl-dot on" aria-label="Show Multi-family" aria-current="true"><i></i></button><button type="button" class="sl-dot" aria-label="Show Single-family"><i></i></button><button type="button" class="sl-dot" aria-label="Show Kitchen with island"><i></i></button><button type="button" class="sl-dot" aria-label="Show Open-plan first floor"><i></i></button><button type="button" class="sl-dot" aria-label="Show Two-tone kitchen"><i></i></button><button type="button" class="sl-dot" aria-label="Show Full home renovation"><i></i></button></div>
+        </div>
+      </figure>
+    </div>
+    <div class="trust">
+      <div><b>Design + build</b><small>One contract, one point of contact</small></div>
+      <div><b>Permits handled</b><small>L&amp;I, zoning and historic review</small></div>
+      <div><b>Licensed &amp; insured</b><small>General Contractor Lic. #053687</small></div>
+      <div><b>Fixed-price proposals</b><small>Itemized before work begins</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="light">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">Services</p><h2>One team. <span class="hl">Start to finish.</span></h2></div>
+      <p>Hire us for all three, or bring your own architect and have us build and manage. Design decisions, budget and schedule stay connected either way.</p>
+    </div>
+    <div class="svc">
+      <article class="card">
+        <div class="ph"><img src="img/svc-design.svg" alt="Illustrated first-floor plan of a Philadelphia rowhome with dimensions and title block" width="800" height="600" loading="lazy"><span>Design</span></div>
+        <div class="bd"><h3>Design</h3><p>Designed for you, within your budget and applicable code.</p>
+          <ul><li>Existing-conditions survey and drawings</li><li>Floor plans, elevations and 3D views</li><li>Finish and fixture selections</li><li>All required permits</li></ul></div>
+      </article>
+      <article class="card">
+        <div class="ph"><img src="img/svc-construction.jpg" alt="New rowhomes under construction with sheathing, installed windows and a new front door" width="1200" height="900" loading="lazy"><span>Construction</span></div>
+        <div class="bd"><h3>Construction</h3><p>Our crews and trusted trade partners, supervised every day on site.</p>
+          <ul><li>Demolition, structure and framing</li><li>Mechanical, electrical and plumbing</li><li>Kitchens, baths and interior finishes</li><li>Roofing, masonry and exteriors</li></ul></div>
+      </article>
+      <article class="card">
+        <div class="ph"><img src="img/svc-pm.svg" alt="Illustrated weekly project update showing a construction schedule by phase" width="800" height="600" loading="lazy"><span>Management</span></div>
+        <div class="bd"><h3>Project management</h3><p>A dedicated manager who owns the schedule, budget and communication.</p>
+          <ul><li>Safety and quality controls</li><li>Weekly schedule and budget updates</li><li>Inspections and change-order control</li><li>Punch list, closeout and warranty</li></ul></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="build" class="dark">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">What we build</p><h2>New construction <span class="hl">&amp; remodeling</span></h2></div>
+      <p>Construction has its own conditions: party walls, narrow lots, century-old framing and tight street access. We plan for them from day one.</p>
+    </div>
+    <div class="build">
+      <div class="lists">
+        <div><h3>New construction</h3><ul>
+          <li><b>Single-family</b><span>Single and multi-lot builds on city parcels</span></li>
+          <li><b>Multi-family</b><span>Duplexes, triplexes and larger buildings for owners and investors</span></li>
+        </ul></div>
+        <div><h3>Remodeling</h3><ul>
+          <li><b>Full home renovation</b><span>Gut rehabs of homes, twins and singles</span></li>
+          <li><b>Kitchens</b><span>Layout changes, cabinetry, counters, appliances</span></li>
+          <li><b>Bathrooms</b><span>Primary suites, hall baths and powder rooms</span></li>
+          <li><b>Additions &amp; basements</b><span>Rear and third-floor additions, lower levels</span></li>
+        </ul></div>
+      </div>
+      <div class="build-photo"><img src="img/kitchen-island.jpg" alt="White shaker kitchen with quartz island and pendant lights" width="1400" height="1050" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="light">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">Projects</p><h2>Sample <span class="hl">work</span></h2></div>
+      <p>New construction and remodeling completed by City Pods in the Philadelphia area. Tap any photo to enlarge it.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button type="button" class="chip" data-f="all" aria-pressed="true">All<small>44</small></button>
+      <button type="button" class="chip" data-f="ext" aria-pressed="false">Exteriors<small>10</small></button>
+      <button type="button" class="chip" data-f="kit" aria-pressed="false">Kitchens<small>11</small></button>
+      <button type="button" class="chip" data-f="bath" aria-pressed="false">Bathrooms<small>15</small></button>
+      <button type="button" class="chip" data-f="int" aria-pressed="false">Interiors<small>8</small></button>
+    </div>
+    <div class="gallery" id="gallery" data-filter="all">
+        <figure class="feature" data-cat="ext"><button type="button" class="g-open" aria-label="Enlarge: Multi-family"><img src="img/exterior-triplex.jpg" alt="Three new brick rowhomes with gray metal-panel bay fronts" width="1313" height="1400" loading="lazy"></button><figcaption><span>New construction</span>Multi-family</figcaption></figure>
+        <figure class="wide" data-cat="kit"><button type="button" class="g-open" aria-label="Enlarge: Studio kitchen &amp; living"><img src="img/kitchen-studio-open.jpg" alt="Open studio unit with gray shaker kitchen, stainless appliances, natural maple hardwood, recessed lights, ceiling fan and keypad-lock entry door" width="1206" height="725" loading="lazy"></button><figcaption><span>Kitchen</span>Studio kitchen &amp; living</figcaption></figure>
+        <figure class="wide" data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Marble-look bath with glass niche"><img src="img/bath-glass-niche.jpg" alt="Bathroom with large-format marble-look tub surround, glass subway tile niche, LED backlit mirror, gray shaker vanity and matte black fixtures" width="1206" height="741" loading="lazy"></button><figcaption><span>Bathroom</span>Marble-look bath with glass niche</figcaption></figure>
+        <figure class="wide" data-cat="kit"><button type="button" class="g-open" aria-label="Enlarge: Kitchen with island"><img src="img/kitchen-island.jpg" alt="White shaker kitchen with quartz island, glass tile backsplash and pendant lights" width="1400" height="1050" loading="lazy"></button><figcaption><span>Kitchen</span>Kitchen with island</figcaption></figure>
+        <figure data-cat="ext"><button type="button" class="g-open" aria-label="Enlarge: Single-family"><img src="img/exterior-modern-infill.jpg" alt="New three-story rowhome with gray brick and lap-siding front, steel stair and roof deck" width="1050" height="1400" loading="lazy"></button><figcaption><span>New construction</span>Single-family</figcaption></figure>
+        <figure data-cat="ext"><button type="button" class="g-open" aria-label="Enlarge: Full home renovation"><img src="img/exterior-brick-renovation.jpg" alt="Renovated three-story red brick rowhome with new white-trimmed windows, restored corbelled cornice, white front door, black steel stair railing and painted stone base" width="1005" height="1400" loading="lazy"></button><figcaption><span>Renovation</span>Full home renovation</figcaption></figure>
+        <figure data-cat="ext"><button type="button" class="g-open" aria-label="Enlarge: Rear elevation and patio"><img src="img/exterior-rear-patio.jpg" alt="Rear of a new three-story rowhome with tan vinyl siding, white-trimmed windows, black wall sconces, roof deck, concrete patio and horizontal cedar fence" width="1050" height="1400" loading="lazy"></button><figcaption><span>New construction</span>Rear elevation &amp; patio</figcaption></figure>
+        <figure class="wide" data-cat="ext"><button type="button" class="g-open" aria-label="Enlarge: Bluestone walkway &amp; plantings"><img src="img/exterior-walkway.jpg" alt="Bluestone walkway with circular paver medallion, fresh-mulched bed of clipped shrubs and landscape lighting along a stone and stucco home" width="1206" height="902" loading="lazy"></button><figcaption><span>Hardscape</span>Bluestone walkway &amp; plantings</figcaption></figure>
+        <figure data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Marble-look suite with soaking tub"><img src="img/bath-marble-tub.jpg" alt="Primary bath with large-format marble-look porcelain floor and walls, freestanding soaking tub and matte black floor-mount filler" width="1058" height="1400" loading="lazy"></button><figcaption><span>Bathroom</span>Marble-look suite with soaking tub</figcaption></figure>
+        <figure data-cat="int"><button type="button" class="g-open" aria-label="Enlarge: Basement living &amp; kitchenette"><img src="img/interior-basement-lounge.jpg" alt="Finished basement with gray plank flooring, recessed lights, paneled column half-walls, kitchenette and refinished stair treads" width="1052" height="1400" loading="lazy"></button><figcaption><span>Interior</span>Basement living &amp; kitchenette</figcaption></figure>
+        <figure data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Powder room with vessel sink"><img src="img/bath-powder-vessel.jpg" alt="Powder room with white floating vanity, vessel sink, matte black faucet and fixtures and marble-look tile floor" width="1005" height="1400" loading="lazy"></button><figcaption><span>Bathroom</span>Powder room with vessel sink</figcaption></figure>
+        <figure data-cat="int"><button type="button" class="g-open" aria-label="Enlarge: Open-plan first floor"><img src="img/interior-open-plan.jpg" alt="Open first floor with gray hardwood, white kitchen and black steel stair railing" width="1050" height="1400" loading="lazy"></button><figcaption><span>Interior</span>Open-plan first floor</figcaption></figure>
+        <figure data-cat="int"><button type="button" class="g-open" aria-label="Enlarge: Open-riser staircase"><img src="img/interior-open-stair.jpg" alt="Open-riser staircase with dark-stained floating treads, white stringer and black steel horizontal-bar railing over a stone foundation wall" width="1050" height="1400" loading="lazy"></button><figcaption><span>Interior</span>Open-riser staircase</figcaption></figure>
+        <figure data-cat="kit"><button type="button" class="g-open" aria-label="Enlarge: White shaker kitchen"><img src="img/kitchen-white.jpg" alt="White shaker kitchen with quartz counters, arabesque backsplash and stainless appliances" width="1050" height="1400" loading="lazy"></button><figcaption><span>Kitchen</span>White shaker kitchen</figcaption></figure>
+        <figure data-cat="ext"><button type="button" class="g-open" aria-label="Enlarge: Full home renovation"><img src="img/exterior-rowhome.jpg" alt="Painted cream brick rowhome with black windows and new stone steps" width="1050" height="1400" loading="lazy"></button><figcaption><span>Renovation</span>Full home renovation</figcaption></figure>
+        <figure data-cat="kit"><button type="button" class="g-open" aria-label="Enlarge: Two-tone kitchen"><img src="img/kitchen-two-tone.jpg" alt="Two-tone kitchen with black lower cabinets, white uppers and copper range hood" width="1050" height="1400" loading="lazy"></button><figcaption><span>Kitchen</span>Two-tone kitchen</figcaption></figure>
+        <figure data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Floating double vanity"><img src="img/bath-floating-vanity.jpg" alt="Black floating double vanity with white subway tile wainscot and black fixtures" width="1050" height="1400" loading="lazy"></button><figcaption><span>Bathroom</span>Floating double vanity</figcaption></figure>
+        <figure data-cat="ext"><button type="button" class="g-open" aria-label="Enlarge: Full home renovation"><img src="img/exterior-porchfront.jpg" alt="Brick and stone porch-front rowhome with new windows, trim and tile awning" width="1050" height="1400" loading="lazy"></button><figcaption><span>Renovation</span>Full home renovation</figcaption></figure>
+        <figure class="wide" data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Double-vanity bath"><img src="img/bath-double-vanity.jpg" alt="Bathroom with double vanity, marble-look wall and gray subway tile tub surround" width="1400" height="1050" loading="lazy"></button><figcaption><span>Bathroom</span>Double-vanity bath</figcaption></figure>
+        <figure data-cat="int"><button type="button" class="g-open" aria-label="Enlarge: Finished basement"><img src="img/interior-basement.jpg" alt="Finished basement with open stair and black steel railing" width="1050" height="1400" loading="lazy"></button><figcaption><span>Interior</span>Finished basement</figcaption></figure>
+        <figure data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Glass vessel vanity"><img src="img/bath-vessel-vanity.jpg" alt="White double vanity with glass vessel sinks and marble-look tile" width="1050" height="1400" loading="lazy"></button><figcaption><span>Bathroom</span>Glass vessel vanity</figcaption></figure>
+        <figure data-cat="kit"><button type="button" class="g-open" aria-label="Enlarge: Gray shaker kitchen"><img src="img/kitchen-gray.jpg" alt="Gray shaker kitchen with granite counters, penny-tile backsplash and twin windows" width="1050" height="1400" loading="lazy"></button><figcaption><span>Kitchen</span>Gray shaker kitchen</figcaption></figure>
+        <figure data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Hall bath"><img src="img/bath-hall.jpg" alt="Hall bath with large-format marble-look tile, black fixtures and tiled niche" width="1050" height="1400" loading="lazy"></button><figcaption><span>Bathroom</span>Hall bath</figcaption></figure>
+        <figure data-cat="int"><button type="button" class="g-open" aria-label="Enlarge: Living room"><img src="img/interior-living.jpg" alt="Bright living room with three front windows and new flooring" width="1050" height="1400" loading="lazy"></button><figcaption><span>Interior</span>Living room</figcaption></figure>
+        <figure data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Tiled tub surround"><img src="img/bath-tile-surround.jpg" alt="Gray plank tile tub surround with glass mosaic band and recessed niche" width="1050" height="1400" loading="lazy"></button><figcaption><span>Bathroom</span>Tiled tub surround</figcaption></figure>
+        <figure data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Marble-look tub surround"><img src="img/bath-lit-mirror.jpg" alt="Bathroom with marble-look tile tub surround, hex niche, backlit mirror and white vanity" width="1025" height="1400" loading="lazy"></button><figcaption><span>Bathroom</span>Marble-look tub surround</figcaption></figure>
+        <figure data-cat="int"><button type="button" class="g-open" aria-label="Enlarge: Open first floor"><img src="img/interior-open-kitchen.jpg" alt="Open first floor with white kitchen, plank flooring and stair with black railing" width="1052" height="1400" loading="lazy"></button><figcaption><span>Interior</span>Open first floor</figcaption></figure>
+        <figure data-cat="kit"><button type="button" class="g-open" aria-label="Enlarge: Gray kitchen with granite"><img src="img/kitchen-gray-granite.jpg" alt="Gray shaker kitchen with granite counters, penny-tile backsplash and gas range" width="1033" height="1400" loading="lazy"></button><figcaption><span>Kitchen</span>Gray kitchen with granite</figcaption></figure>
+        <figure class="wide" data-cat="kit"><button type="button" class="g-open" aria-label="Enlarge: Copper hood galley kitchen"><img src="img/kitchen-copper-hood.jpg" alt="Galley kitchen with white uppers, black lowers, quartz counters, arabesque tile and copper range hood" width="1206" height="731" loading="lazy"></button><figcaption><span>Kitchen</span>Copper hood galley kitchen</figcaption></figure>
+        <figure data-cat="kit"><button type="button" class="g-open" aria-label="Enlarge: Kitchen with breakfast bar"><img src="img/kitchen-side-by-side.jpg" alt="Kitchen with stainless range, copper hood, built-in microwave drawer and side-by-side refrigerator" width="1188" height="707" loading="lazy"></button><figcaption><span>Kitchen</span>Kitchen with breakfast bar</figcaption></figure>
+        <figure class="wide" data-cat="int"><button type="button" class="g-open" aria-label="Enlarge: Slat wall with fireplace"><img src="img/interior-slat-wall.jpg" alt="Living area with wood slat feature wall, linear electric fireplace and light plank flooring" width="1206" height="697" loading="lazy"></button><figcaption><span>Interior</span>Slat wall with fireplace</figcaption></figure>
+        <figure class="wide" data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Rain shower suite"><img src="img/bath-rain-shower.jpg" alt="Primary bath with charcoal large-format tile shower, black rain head, fluted accent wall and white double vanity" width="1206" height="722" loading="lazy"></button><figcaption><span>Bathroom</span>Rain shower suite</figcaption></figure>
+        <figure class="wide" data-cat="ext"><button type="button" class="g-open" aria-label="Enlarge: Roof deck"><img src="img/exterior-roof-deck.jpg" alt="New pressure-treated roof deck with picket railing over the rowhome block" width="1206" height="708" loading="lazy"></button><figcaption><span>New construction</span>Roof deck</figcaption></figure>
+        <figure data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Slatted wood vanity"><img src="img/bath-wood-vanity.jpg" alt="Powder room with slatted wood vanity, gold-veined marble-look wall tile and backlit round mirror" width="1206" height="715" loading="lazy"></button><figcaption><span>Bathroom</span>Slatted wood vanity</figcaption></figure>
+        <figure class="wide" data-cat="kit"><button type="button" class="g-open" aria-label="Enlarge: Compact gray kitchen"><img src="img/kitchen-compact.jpg" alt="Gray shaker kitchen with quartz counters, wave-texture backsplash, black faucet and maple hardwood" width="1206" height="740" loading="lazy"></button><figcaption><span>Kitchen</span>Compact gray kitchen</figcaption></figure>
+        <figure class="wide" data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Freestanding soaking tub"><img src="img/bath-soaking-tub.jpg" alt="Freestanding soaking tub under a window with floor-mount black filler and gray tile wainscot" width="1206" height="703" loading="lazy"></button><figcaption><span>Bathroom</span>Freestanding soaking tub</figcaption></figure>
+        <figure data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Barn-door double vanity"><img src="img/bath-barn-vanity.jpg" alt="Barn-door double vanity with woven baskets, backlit mirror and gray subway tile tub surround" width="1206" height="705" loading="lazy"></button><figcaption><span>Bathroom</span>Barn-door double vanity</figcaption></figure>
+        <figure data-cat="kit"><button type="button" class="g-open" aria-label="Enlarge: Cherry and granite kitchen"><img src="img/kitchen-cherry-granite.jpg" alt="L-shaped kitchen with raised-panel cherry cabinets, crown molding, glass-front corner cabinet, dark granite counters and diamond-set granite backsplash, stainless gas range and appliances" width="1050" height="1400" loading="lazy"></button><figcaption><span>Kitchen</span>Cherry &amp; granite kitchen</figcaption></figure>
+        <figure data-cat="ext"><button type="button" class="g-open" aria-label="Enlarge: Multi-unit rowhome conversion"><img src="img/exterior-navy-rowhome.jpg" alt="Three-story rowhome with navy-painted brick, white-trimmed replacement windows, arched door hood, red front door, new steps with black railing and a multi-meter electric bank" width="617" height="901" loading="lazy"></button><figcaption><span>Renovation</span>Multi-unit rowhome conversion</figcaption></figure>
+        <figure data-cat="ext"><button type="button" class="g-open" aria-label="Enlarge: Flat roof membrane"><img src="img/roof-flat-membrane.jpg" alt="Rowhome flat roof with lapped-seam roll membrane, wrapped parapet edges and flashed roof vent" width="1136" height="1400" loading="lazy"></button><figcaption><span>Roofing</span>Flat roof membrane</figcaption></figure>
+        <figure class="wide" data-cat="kit"><button type="button" class="g-open" aria-label="Enlarge: Gray kitchen with island"><img src="img/kitchen-gray-island.jpg" alt="Gray shaker kitchen with quartz island, arabesque tile backsplash, mason-jar pendant cluster and stainless appliances" width="1121" height="748" loading="lazy"></button><figcaption><span>Kitchen</span>Gray kitchen with island</figcaption></figure>
+        <figure class="wide" data-cat="int"><button type="button" class="g-open" aria-label="Enlarge: Entry hall &amp; staircase"><img src="img/interior-entry-stair.jpg" alt="First floor with natural maple hardwood, recessed lighting, oak-tread stair with black steel railing and view through to the kitchen" width="1177" height="760" loading="lazy"></button><figcaption><span>Interior</span>Entry hall &amp; staircase</figcaption></figure>
+        <figure data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Glass shower &amp; walnut vanity"><img src="img/bath-glass-shower.jpg" alt="Bathroom with frameless glass walk-in shower in marble-look porcelain, mosaic niche, slatted walnut double vanity and brushed nickel fixtures" width="1181" height="746" loading="lazy"></button><figcaption><span>Bathroom</span>Glass shower &amp; walnut vanity</figcaption></figure>
+        <figure data-cat="bath"><button type="button" class="g-open" aria-label="Enlarge: Rustic oak powder room"><img src="img/bath-powder-rustic.jpg" alt="Powder room with weathered oak shaker vanity, matte black faucet and hardware, silver framed mirror and patterned cement-look floor tile" width="497" height="798" loading="lazy"></button><figcaption><span>Bathroom</span>Rustic oak powder room</figcaption></figure>
+    </div>
+  </div>
+  <dialog id="lb" aria-label="Project photo">
+    <div class="lb-inner">
+      <img id="lb-img" alt="">
+      <div class="lb-bar">
+        <p id="lb-cap"></p>
+        <div class="lb-ctl">
+          <button type="button" id="lb-prev" aria-label="Previous photo">&larr;</button>
+          <button type="button" id="lb-next" aria-label="Next photo">&rarr;</button>
+          <button type="button" id="lb-close">Close</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</section>
+
+<section id="process" class="dark">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">How it works</p><h2>First meeting <span class="hl">to move-in</span></h2></div>
+      <p>Every project follows the same five steps, so you always know what comes next and what we need from you.</p>
+    </div>
+    <ol class="steps">
+      <li><h3>Consultation</h3><p>We visit the property, hear your goals and talk through budget range and timing.</p></li>
+      <li><h3>Design</h3><p>Concept plans, then detailed drawings and selections once the direction is set.</p></li>
+      <li><h3>Proposal &amp; permits</h3><p>A fixed-price, itemized proposal. We file and track permits and zoning approvals.</p></li>
+      <li><h3>Construction</h3><p>Your project manager runs the site and sends weekly progress, schedule and budget updates.</p></li>
+      <li><h3>Walkthrough</h3><p>Final inspections, punch list, closeout documents and your warranty package.</p></li>
+    </ol>
+    <div class="selections">
+      <div class="sp swatches"><figure class="sw"><img src="img/sw-fridge.jpg" alt="Stainless French-door refrigerator, gas range and microwave with white shaker cabinets" width="480" height="480" loading="lazy"></figure><figure class="sw"><img src="img/sw-cabinet.jpg" alt="White shaker cabinets with matte black bar pulls over an arabesque tile backsplash and black faucet" width="480" height="480" loading="lazy"></figure><figure class="sw"><img src="img/sw-tub.jpg" alt="White freestanding soaking tub with matte black floor-mount filler and gray large-format tile" width="480" height="480" loading="lazy"></figure><figure class="sw"><img src="img/sw-vanity.jpg" alt="Gold-veined marble-look wall tile with backlit round mirror, matte black faucet and slatted wood vanity" width="480" height="480" loading="lazy"></figure><figure class="sw"><img src="img/sw-handrail.jpg" alt="Black steel stair handrail with horizontal bars" width="480" height="480" loading="lazy"></figure><figure class="sw"><img src="img/sw-hardwood.jpg" alt="Gray-stained hardwood flooring" width="480" height="480" loading="lazy"></figure></div>
+      <div class="st">
+        <p class="eyebrow">Selections</p>
+        <h3>See the real materials before anything is ordered</h3>
+        <p>During design we walk you through countertop slabs, cabinet door styles and tile, so you choose from the actual materials. Your selections are priced into the proposal before work starts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="about">
+<section class="light">
+  <div class="wrap">
+    <div class="about">
+      <div>
+        <p class="eyebrow">About City Pods</p>
+        <p class="statement" style="margin-top:22px">We keep design, construction and project management under one roof, so the people drawing your plans are the people pricing and building them.</p>
+        <p class="about-body">Most projects stall between the architect, the contractor and the permit office. City Pods was started to make building and renovating in Philadelphia simpler for homeowners.</p>
+      </div>
+      <div class="creds">
+        <div><span>General contractor license</span><b>#053687</b></div>
+        <div><span>Insurance</span><b>General liability &amp; workers' comp</b></div>
+        <div><span>Warranty</span><b>Written workmanship warranty</b></div>
+      </div>
+    </div>
+    <figure class="about-video">
+      <video id="about-vid" controls playsinline preload="metadata" poster="img/city-pods-video-poster.jpg" width="1920" height="1080">
+        <source src="img/city-pods-video.mp4" type="video/mp4">
+      </video>
+      <figcaption><span class="eyebrow">Watch</span> City Pods in 60 seconds</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="philly">
+  <div class="ph-hero">
+    <img src="img/philly-oldcity.jpg" alt="Cobblestone Philadelphia street of brick rowhomes leading to a colonial clock tower at sunset" width="1312" height="1199" loading="lazy">
+    <div class="wrap">
+      <p class="eyebrow" style="color:var(--brand)">Rooted in Philadelphia</p>
+      <h2>Built for the <span class="hl">Philly Area.</span></h2>
+      <p class="lead">From trinity houses on cobblestone blocks to stone colonials on the Main Line, we provide design-build services that fit Philadelphia and its suburbs: their streets, their codes and their character.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <h3 class="hood-h">Philadelphia</h3>
+    <div class="hoods">
+      <figure class="hood"><img src="img/philly-rittenhouse.jpg" alt="Rittenhouse Square fountain with the Center City skyline at dusk" width="572" height="570" loading="lazy"><figcaption><b>Center City</b><span>Condos, townhomes, historic rehabs</span></figcaption></figure>
+      <figure class="hood"><img src="img/philly-fishtown.jpg" alt="Fishtown mural on a brick wall with the Ben Franklin Bridge in the distance" width="617" height="554" loading="lazy" style="object-position:8% 50%"><figcaption><b>Fishtown &amp; River Wards</b><span>New infill and roof decks</span></figcaption></figure>
+      <figure class="hood"><img src="img/philly-rowstreet.jpg" alt="Tree-lined brick sidewalk of colonial rowhomes" width="360" height="582" loading="lazy"><figcaption><b>Society Hill &amp; Old City</b><span>Rowhome renovations</span></figcaption></figure>
+      <figure class="hood"><img src="img/philly-italian-market.jpg" alt="Italian Market street with produce stands and awnings" width="406" height="614" loading="lazy"><figcaption><b>South Philly</b><span>Gut rehabs and additions</span></figcaption></figure>
+    </div>
+    <h3 class="hood-h">Suburban counties</h3>
+    <div class="hoods counties">
+      <figure class="hood"><img src="img/county-chester.jpg" alt="Formal fountain garden and conservatory in Chester County" width="294" height="220" loading="lazy"><figcaption><b>Chester County</b><span>West Chester, Kennett Square, Malvern</span></figcaption></figure>
+      <figure class="hood"><img src="img/county-delaware.jpg" alt="Shingled garden pavilion with a domed roof among flowering beds in Delaware County" width="680" height="383" loading="lazy"><figcaption><b>Delaware County</b><span>Media, Swarthmore, Radnor</span></figcaption></figure>
+      <figure class="hood"><img src="img/county-montgomery.jpg" alt="Gothic stone cathedral tower rising above the trees in Montgomery County" width="510" height="510" loading="lazy"><figcaption><b>Montgomery County</b><span>Main Line, Conshohocken, Jenkintown</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="cta-band">
+  <div class="wrap">
+    <div><h2>Ready to build?</h2><p>Tell us about your home. We'll schedule a free on-site consultation.</p></div>
+    <a class="btn btn-k" href="#contact">Start your project <span class="arr" aria-hidden="true">&rarr;</span></a>
+  </div>
+</div>
+
+<section id="contact" class="dark">
+  <div class="wrap">
+    <div class="contact">
+      <div class="info">
+        <div><p class="eyebrow">Contact</p><h2 style="font-size:clamp(40px,5.4vw,68px);margin-top:18px">Start your <span class="hl">project</span></h2></div>
+        <div><span class="k">Email</span><span class="v">info@citypods.com</span></div>
+        <div><span class="k">Phone</span><span class="v">(610) 701-1071</span></div>
+        <div><span class="k">Office</span><span class="v">Philadelphia, PA</span></div>
+        <div><span class="k">Hours</span><span class="v">Mon&ndash;Fri, 8 am &ndash; 5 pm</span></div>
+        <div><span class="k">Instagram</span><a class="v" href="https://www.instagram.com/citypodsllc/" target="_blank" rel="noopener" style="text-decoration:none;user-select:auto">@citypodsllc</a></div>
+      </div>
+      <form id="leadform" novalidate>
+        <label>Name<input id="f-name" name="name" autocomplete="name"></label>
+        <label>Phone<input id="f-phone" name="phone" type="tel" autocomplete="tel"></label>
+        <label class="full">Email<input id="f-email" name="email" type="email" autocomplete="email"></label>
+        <label>Project type
+          <select id="f-type" name="type"><option>Full home renovation</option><option>Kitchen</option><option>Bathroom</option><option>Addition or basement</option><option>New construction</option><option>Other</option></select>
+        </label>
+        <label>Property ZIP<input id="f-zip" name="zip" inputmode="numeric" placeholder="e.g. 19146"></label>
+        <label class="full">Budget range
+          <select id="f-budget" name="budget"><option>Not sure yet</option><option>Under $50,000</option><option>$50,000 &ndash; $150,000</option><option>$150,000 &ndash; $400,000</option><option>$400,000+</option></select>
+        </label>
+        <label class="full">About your project<textarea id="f-msg" name="msg" placeholder="What would you like to build or change?"></textarea></label>
+        <div class="full"><button class="btn btn-y" type="submit">Request consultation <span class="arr" aria-hidden="true">&rarr;</span></button></div>
+        <p class="form-msg" id="formmsg" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="foot-logo" role="img" aria-label="City Pods, Urban Living"><span class="lock"><span class="wm" aria-hidden="true">C<i class="bar"></i>TY PODS</span><small>URBAN LIVING</small></span></span>
+    <nav aria-label="Footer"><a href="#services">Services</a><a href="#build">What we build</a><a href="#projects">Projects</a><a href="#process">Process</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://www.instagram.com/citypodsllc/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>Instagram</a></nav>
+    <span>&copy; 2026 City Pods &middot; Philadelphia, PA</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('menubtn'),n=document.getElementById('navlinks');
+  b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+  n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');b.setAttribute('aria-expanded','false')})});
+
+  var sw=document.getElementById('slides'),sl=[].slice.call(sw.querySelectorAll('.slide')),dt=[].slice.call(sw.querySelectorAll('.sl-dot')),
+      pb=document.createElement('button'),
+      si=0,timer=null,DUR=2000,
+      still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches,paused=still;
+  sw.style.setProperty('--dur',DUR+'ms');
+  function go(i){
+    si=(i+sl.length)%sl.length;
+    sl.forEach(function(s,k){s.classList.toggle('on',k===si)});
+    dt.forEach(function(d,k){d.classList.remove('on','run');d.classList.toggle('done',k<si);if(k===si){d.setAttribute('aria-current','true')}else{d.removeAttribute('aria-current')}});
+    var d=dt[si];d.classList.add('on');void d.offsetWidth;if(!paused)d.classList.add('run');
+    clearTimeout(timer);if(!paused)timer=setTimeout(function(){go(si+1)},DUR);
+  }
+  function setPause(p){paused=p;pb.textContent=p?'Play':'Pause';pb.setAttribute('aria-label',p?'Play slideshow':'Pause slideshow');go(si)}
+  dt.forEach(function(d,k){d.addEventListener('click',function(){go(k)})});
+  pb.addEventListener('click',function(){setPause(!paused)});
+  document.addEventListener('visibilitychange',function(){if(document.hidden){clearTimeout(timer)}else if(!paused){go(si)}});
+  setPause(paused);
+
+  var g=document.getElementById('gallery'),chips=document.querySelectorAll('.chip'),figs=[].slice.call(g.querySelectorAll('figure'));
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    var f=c.getAttribute('data-f');g.setAttribute('data-filter',f);
+    chips.forEach(function(x){x.setAttribute('aria-pressed',x===c?'true':'false')});
+    figs.forEach(function(fig){fig.hidden=!(f==='all'||fig.getAttribute('data-cat')===f)});
+  })});
+
+  var lb=document.getElementById('lb'),li=document.getElementById('lb-img'),lc=document.getElementById('lb-cap'),cur=0;
+  function vis(){return figs.filter(function(f){return !f.hidden})}
+  function show(fig){var im=fig.querySelector('img'),fc=fig.querySelector('figcaption');li.src=im.src;li.alt=im.alt;lc.textContent=fc.querySelector('span').textContent+' \u00b7 '+fc.lastChild.textContent;cur=vis().indexOf(fig)}
+  function step(d){var v=vis();if(!v.length)return;show(v[(cur+d+v.length)%v.length])}
+  figs.forEach(function(fig){fig.querySelector('.g-open').addEventListener('click',function(){show(fig);try{lb.showModal()}catch(e){lb.setAttribute('open','')}})});
+  document.getElementById('lb-prev').addEventListener('click',function(){step(-1)});
+  document.getElementById('lb-next').addEventListener('click',function(){step(1)});
+  document.getElementById('lb-close').addEventListener('click',function(){lb.close()});
+  lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
+  lb.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1)});
+
+  var f=document.getElementById('leadform'),m=document.getElementById('formmsg');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var nm=document.getElementById('f-name').value.trim(),em=document.getElementById('f-email').value.trim();
+    if(!nm||!/^\S+@\S+\.\S+$/.test(em)){m.textContent='Enter your name and a valid email address.';m.hidden=false;return}
+    m.textContent='This form is not connected to an inbox yet. Please email info@citypods.com or call the office.';m.hidden=false;
+  });
+})();
+</script>
+
+</body></html>

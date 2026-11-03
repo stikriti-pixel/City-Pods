@@ -1,0 +1,12 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Netlify
+.netlify/
+
+# Node (if tooling is added later)
+node_modules/

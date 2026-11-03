@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" font-family="'Helvetica Neue', Arial, sans-serif">
+  <rect width="800" height="600" fill="#2a2a26"/>
+  <rect x="36" y="36" width="728" height="528" rx="6" fill="#f2f1ec"/>
+
+  <!-- header -->
+  <text x="68" y="84" fill="#5f5d56" font-size="12" font-weight="600" letter-spacing="2.4">WEEKLY PROJECT UPDATE</text>
+  <text x="68" y="116" fill="#0d0d0c" font-size="28" font-weight="700">Week 9 of 16</text>
+  <rect x="566" y="90" width="166" height="34" rx="17" fill="#0d0d0c"/>
+  <circle cx="590" cy="107" r="6" fill="#d6c531"/>
+  <text x="604" y="112" fill="#f2f1ec" font-size="14" font-weight="600">On schedule</text>
+  <path d="M68 140H732" stroke="#d6d3c9" stroke-width="1"/>
+
+  <!-- week scale: x = 260 + (w-1)*29 , w=1..16 -->
+  <g fill="#5f5d56" font-size="11" font-weight="600" text-anchor="middle">
+    <text x="274" y="164">W1</text><text x="361" y="164">W4</text><text x="477" y="164">W8</text><text x="593" y="164">W12</text><text x="709" y="164">W16</text>
+  </g>
+  <g stroke="#e3e1d9" stroke-width="1">
+    <path d="M260 172V470M376 172V470M492 172V470M608 172V470M724 172V470"/>
+  </g>
+
+  <!-- rows -->
+  <g font-size="14" fill="#0d0d0c">
+    <text x="68" y="196">Demolition</text>
+    <text x="68" y="236">Framing</text>
+    <text x="68" y="276">MEP rough-in</text>
+    <text x="68" y="316">Inspections</text>
+    <text x="68" y="356" font-weight="700">Insulation &amp; drywall</text>
+    <text x="68" y="396">Finishes</text>
+    <text x="68" y="436">Punch list</text>
+  </g>
+  <!-- complete -->
+  <g fill="#0d0d0c">
+    <rect x="260" y="182" width="58" height="20" rx="3"/>
+    <rect x="289" y="222" width="87" height="20" rx="3"/>
+    <rect x="347" y="262" width="87" height="20" rx="3"/>
+    <rect x="434" y="302" width="29" height="20" rx="3"/>
+  </g>
+  <!-- in progress -->
+  <rect x="463" y="342" width="58" height="20" rx="3" fill="#d6c531"/>
+  <rect x="463" y="342" width="29" height="20" rx="3" fill="#b8a71f"/>
+  <!-- upcoming -->
+  <g fill="none" stroke="#8a887f" stroke-width="1.5" stroke-dasharray="4 3">
+    <rect x="521" y="382" width="116" height="20" rx="3"/>
+    <rect x="637" y="422" width="58" height="20" rx="3"/>
+  </g>
+  <!-- today -->
+  <path d="M484 174V456" stroke="#0d0d0c" stroke-width="2"/>
+  <rect x="460" y="456" width="48" height="20" rx="3" fill="#0d0d0c"/>
+  <text x="484" y="470" fill="#f2f1ec" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1">TODAY</text>
+
+  <!-- footer cards -->
+  <path d="M68 494H732" stroke="#d6d3c9" stroke-width="1"/>
+  <g font-size="11" font-weight="600" letter-spacing="1.6" fill="#5f5d56">
+    <text x="68" y="520">THIS WEEK</text>
+    <text x="300" y="520">NEXT MILESTONE</text>
+    <text x="532" y="520">INSPECTIONS</text>
+  </g>
+  <g font-size="15" fill="#0d0d0c" font-weight="600">
+    <text x="68" y="544">Insulation &amp; drywall</text>
+    <text x="300" y="544">Drywall finish</text>
+    <text x="532" y="544">All passed to date</text>
+  </g>
+  <path d="M243 510V550M475 510V550" stroke="#d6d3c9"/>
+</svg>
