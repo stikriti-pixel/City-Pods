@@ -26,3 +26,11 @@ then visit http://localhost:8000
 - Replace the placeholder email `info@citypods.com`.
 - Connect the contact form (for example Netlify Forms: add `name="consultation" data-netlify="true"` to the `<form>`).
 - Confirm usage rights for listing photos and county photos.
+
+## Deploy (Hostinger, Node.js web app from GitHub)
+- Framework / preset: **Other** (or Express/Node)
+- Install command: `npm install`
+- Build command: `npm run build`
+- Output directory: `dist`
+- Start command: `npm start` (serves `dist/` on the port Hostinger provides)
+- Node version: 18 or newer
