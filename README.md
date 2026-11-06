@@ -23,7 +23,7 @@ then visit http://localhost:8000
 - **Custom domain:** Netlify → Domain settings → add `citypods.com` and follow the DNS steps.
 
 ## Before launch
-- Replace the placeholder email `info@citypods.com`.
+- Replace the placeholder email `info@citypodsphilly.com`.
 - Connect the contact form (for example Netlify Forms: add `name="consultation" data-netlify="true"` to the `<form>`).
 - Confirm usage rights for listing photos and county photos.
 

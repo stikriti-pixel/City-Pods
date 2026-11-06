@@ -3,7 +3,7 @@ Build the City Pods company website as a static site I can deploy to Netlify. Wo
 ## The business
 City Pods ("City Pods · Urban Living") is a Philadelphia-area residential design-build company: new construction (single- and multi-family) and full home renovations, kitchens, baths, additions and basements. Three services: Design, Construction, Project Management. Service area: Philadelphia plus Chester, Delaware and Montgomery counties.
 - Phone: (610) 701-1071
-- Email: info@citypods.com (placeholder until I give you the real one)
+- Email: info@citypodsphilly.com (placeholder until I give you the real one)
 - Office: Philadelphia, PA · Hours: Mon–Fri, 8 am – 5 pm
 - Instagram: @citypodsllc (https://www.instagram.com/citypodsllc/)
 - General Contractor License #053687 · General liability & workers' comp · Written workmanship warranty
