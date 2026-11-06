@@ -584,6 +584,7 @@ footer nav a:hover{color:var(--paper)}
         </label>
         <label class="full">About your project<textarea id="f-msg" name="msg" placeholder="What would you like to build or change?"></textarea></label>
         <div class="full"><button class="btn btn-y" type="submit">Request consultation <span class="arr" aria-hidden="true">&rarr;</span></button></div>
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
         <p class="form-msg" id="formmsg" hidden></p>
       </form>
     </div>
@@ -641,12 +642,22 @@ footer nav a:hover{color:var(--paper)}
   lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
   lb.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1)});
 
-  var f=document.getElementById('leadform'),m=document.getElementById('formmsg');
+  var f=document.getElementById('leadform'),m=document.getElementById('formmsg'),fb=f.querySelector('button[type="submit"]'),fl=fb.firstChild.textContent;
+  function val(id){var el=document.getElementById(id);return el?el.value.trim():''}
   f.addEventListener('submit',function(e){
     e.preventDefault();
-    var nm=document.getElementById('f-name').value.trim(),em=document.getElementById('f-email').value.trim();
+    var nm=val('f-name'),em=val('f-email');
     if(!nm||!/^\S+@\S+\.\S+$/.test(em)){m.textContent='Enter your name and a valid email address.';m.hidden=false;return}
-    m.textContent='This form is not connected to an inbox yet. Please email info@citypodsphilly.com or call the office.';m.hidden=false;
+    var hp=f.querySelector('[name="botcheck"]');if(hp&&hp.checked)return;
+    var type=val('f-type'),zip=val('f-zip');
+    var data={access_key:'d3efa74e-d0cd-4baa-873a-e404f1814e03',subject:'New consultation request: '+type+(zip?', '+zip:''),from_name:'City Pods website',replyto:em,
+      'Name':nm,'Phone':val('f-phone'),'Email':em,'Project type':type,'Property ZIP':zip,'Budget range':val('f-budget'),'Message':val('f-msg')};
+    fb.disabled=true;fb.firstChild.textContent='Sending\u2026 ';m.hidden=true;
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json().then(function(j){if(!r.ok||!j.success)throw new Error(j.message||'failed')})})
+      .then(function(){f.reset();m.textContent='Thanks, '+nm.split(' ')[0]+'! Your request was sent. We\u2019ll be in touch within one business day.'})
+      .catch(function(){m.textContent='Sorry, that didn\u2019t go through. Please call (610) 701-1071 or email info@citypodsphilly.com.'})
+      .then(function(){m.hidden=false;fb.disabled=false;fb.firstChild.textContent=fl});
   });
 })();
 </script>
