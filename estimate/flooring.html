@@ -206,7 +206,7 @@
 </section>
 
 <section id="view-leads" class="hidden">
-  <div class="note"><b>Demo only.</b> On your live website, each submission goes to your email and CRM. This tab just shows the record your team would receive, including the lead score.</div>
+  <div class="note"><b>Demo only.</b> On your live website, each submission is emailed to info@citypodsphilly.com. This tab just shows the record your team would receive, including the lead score.</div>
   <div class="card"><div id="leadsOut" class="hint">No leads captured yet. Submit the form in the Homeowner view to see one.</div></div>
 </section>
 </main>
@@ -421,6 +421,41 @@ function buildSettings(){
   }));
 }
 
+/* ================= EMAIL NOTIFICATION (Web3Forms) ================= */
+function optText(id){ var el=document.getElementById(id); return el && el.selectedOptions && el.selectedOptions[0] ? el.selectedOptions[0].text : ''; }
+function sendLead(lead){
+  try {
+    var project = (document.title.split('·')[1] || 'Remodel Estimator').replace('Estimator','').trim();
+    var e = estimate(lead.inputs, lead.inputs.tier);
+    var lines = (e.items || []).map(function(i){ return '• ' + i.label + ': ' + usd(i.amt); }).join('\n');
+    var scope = Object.keys(lead.inputs).map(function(k){ var v = lead.inputs[k]; return k + ': ' + (typeof v === 'object' ? JSON.stringify(v) : v); }).join('\n');
+    var data = {
+      access_key: '20a58110-0835-4836-9de0-de11970a137c',
+      subject: 'New ' + project + ' estimate lead: ' + lead.grade + ' · ' + lead.name + ' · ' + lead.zip,
+      from_name: 'City Pods estimator',
+      replyto: lead.email,
+      'Project': project,
+      'Lead grade': lead.grade + ' (score ' + lead.score + ')',
+      'Name': lead.name,
+      'Phone': lead.phone.replace(/^(\d{3})(\d{3})(\d{4})$/, '$1-$2-$3'),
+      'Email': lead.email,
+      'ZIP': lead.zip,
+      'Start timeline': optText('lTimeline'),
+      'Owns home': optText('lOwner'),
+      'Budget in mind': optText('lBudget'),
+      'Finish level': TIERS[lead.inputs.tier],
+      'Estimate range': usd(lead.estimate.low) + ' – ' + usd(lead.estimate.high),
+      'Point estimate': usd(lead.estimate.point),
+      'Line items': lines,
+      'Scope details': scope,
+      'Submitted': lead.submitted
+    };
+    fetch('https://api.web3forms.com/submit', { method: 'POST', keepalive: true,
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
+      .catch(function(){});
+  } catch (err) {}
+}
+
 function scoreLead(l){
   let s = {asap:40,'1-3':30,'3-6':15,research:0}[l.timeline] + {yes:30,buying:20,no:-30}[l.owner];
   if (l.budget) { const b = {'<5':5000,'5-10':10000,'10-20':20000,'20+':30000}[l.budget]; s += b >= l.estimate.low ? 20 : 5; } else s += 10;
@@ -456,7 +491,7 @@ $('leadForm').addEventListener('submit', ev => {
   const inputs = readInputs(); const est = estimate(inputs, inputs.tier);
   const lead = { submitted:new Date().toLocaleString(), name, phone, email, zip, timeline:$('lTimeline').value, owner:$('lOwner').value, budget:$('lBudget').value,
     inputs, estimate:{low:est.low, high:est.high, point:Math.round(est.total), sf:est.totalSf} };
-  Object.assign(lead, scoreLead(lead)); leads.push(lead); unlocked = true;
+  Object.assign(lead, scoreLead(lead)); leads.push(lead); sendLead(lead); unlocked = true;
   $('modal').classList.remove('open'); render(); renderLeads();
 });
 document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => {
