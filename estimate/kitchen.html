@@ -536,10 +536,12 @@ function sendLead(lead){
       'Scope details': scope,
       'Submitted': lead.submitted
     };
-    fetch('https://api.web3forms.com/submit', { method: 'POST', keepalive: true,
+    fetch('https://api.web3forms.com/submit', { method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
-      .catch(function(){});
-  } catch (err) {}
+      .then(function(r){ return r.json(); })
+      .then(function(j){ if (!j.success) console.warn('Estimate email not sent:', j.message); })
+      .catch(function(e){ console.warn('Estimate email failed:', e); });
+  } catch (err) { console.warn('Estimate email error:', err); }
 }
 
 function scoreLead(l){
