@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>City Pods · Basement Finishing Estimator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f2f1ec; --card:#ffffff; --ink:#0d0d0c; --muted:#5f5d56; --line:#d6d3c9;
+    --brand:#d6c531; --accent:#0d0d0c; --accent-2:#f6f1cf; --warn:#9a5b12; --hot:#b3261e;
+    --mist:#a7a59c; --f-display:"Outfit","Avenir Next",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Instrument Sans',system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.45}
+  header{background:var(--ink);color:#f2f1ec;padding:20px 20px 18px;border-bottom:4px solid var(--brand)}
+  .hwrap{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+  .lock{display:flex;flex-direction:column;gap:6px}
+  .wm{font-family:var(--f-display);font-weight:800;font-size:30px;line-height:.9;letter-spacing:-.02em;white-space:nowrap}
+  .wm .bar{display:inline-block;width:.16em;height:.71em;background:var(--brand);margin:0 .07em;vertical-align:baseline}
+  .lock small{font-family:var(--f-display);font-weight:500;font-size:9.5px;letter-spacing:.62em;color:var(--mist)}
+  .htxt{text-align:right}
+  .htxt h1{margin:0;font-family:var(--f-display);font-size:20px;font-weight:700;letter-spacing:-.01em}
+  .htxt p{margin:3px 0 0;color:var(--mist);font-size:14px}
+  @media (max-width:600px){.htxt{text-align:left}}
+  .tabs{display:flex;gap:4px;padding:0 16px;background:var(--ink);overflow-x:auto}
+  .tab{background:transparent;border:0;color:var(--mist);padding:11px 14px;font-family:var(--f-display);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;white-space:nowrap}
+  .tab.active{background:var(--bg);color:var(--ink);box-shadow:inset 0 3px 0 var(--brand)}
+  main{max-width:1100px;margin:0 auto;padding:18px 16px 60px}
+  .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+  @media (max-width:880px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:0;padding:18px;margin-bottom:14px}
+  .card h2{margin:0 0 12px;font-family:var(--f-display);font-size:18px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+  .num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:0;background:var(--brand);color:var(--ink);font-family:var(--f-display);font-size:12px;font-weight:700}
+  .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:10px}
+  label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:4px}
+  input[type=number],input[type=text],input[type=email],input[type=tel],select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+  input:focus,select:focus{outline:2px solid var(--ink);outline-offset:-1px}
+  .hint{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .calc{font-size:13px;background:var(--accent-2);color:var(--ink);padding:6px 10px;border-radius:6px;display:inline-block;margin-top:2px;font-weight:600}
+  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+  .chk{display:flex;gap:8px;align-items:center;padding:9px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;color:var(--ink);margin:0}
+  .chk input{accent-color:var(--ink);width:16px;height:16px}
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .tier{border:1.5px solid var(--line);border-radius:0;padding:10px;cursor:pointer;margin:0;color:var(--ink)}
+  .tier input{display:none}
+  .tier b{display:block;font-size:15px;font-family:var(--f-display)}
+  .tier span{font-size:12px;color:var(--muted);font-weight:400}
+  .tier.sel{border-color:var(--brand);background:var(--accent-2);box-shadow:inset 4px 0 0 var(--brand)}
+  .sticky{position:sticky;top:12px}
+  .est-label{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .range{font-family:var(--f-display);font-size:32px;font-weight:800;letter-spacing:-.02em;margin:4px 0 2px;color:var(--ink)}
+  .btn{display:block;width:100%;background:var(--brand);color:var(--ink);border:0;border-radius:0;padding:14px;font-family:var(--f-display);font-size:15px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;cursor:pointer;margin-top:12px}
+  .btn:hover{background:#e4d23b}
+  .btn.secondary{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn.small{display:inline-block;width:auto;padding:8px 14px;margin:0 8px 0 0;font-size:14px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  td,th{padding:7px 4px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  td.r,th.r{text-align:right;white-space:nowrap}
+  tr.total td{font-weight:700;border-bottom:0;border-top:2px solid var(--ink)}
+  .tiercmp{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}
+  .tiercmp div{background:var(--bg);border-radius:0;padding:8px;text-align:center;font-size:12px;color:var(--muted)}
+  .tiercmp div b{display:block;font-size:14px;color:var(--ink)}
+  .tiercmp div.sel{background:var(--accent-2);outline:1.5px solid var(--brand)}
+  .locked{filter:blur(5px);user-select:none;pointer-events:none}
+  .lockwrap{position:relative}
+  .lockmsg{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:600;color:var(--ink);font-size:14px;padding:10px}
+  .modal-bg{position:fixed;inset:0;background:rgba(20,30,26,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+  .modal-bg.open{display:flex}
+  .modal{background:#fff;border-radius:0;border-top:5px solid var(--brand);max-width:460px;width:100%;padding:20px;max-height:92vh;overflow:auto}
+  .modal h3{margin:0 0 4px;font-family:var(--f-display);font-size:20px}
+  .err{color:var(--hot);font-size:13px;margin-top:6px;min-height:1em}
+  .badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700}
+  .b-hot{background:#fbe4e2;color:var(--hot)} .b-warm{background:#fdf0dc;color:var(--warn)} .b-nurture{background:#e6ecf5;color:#2f4f7f}
+  pre{background:#11181a;color:#d6e6e0;padding:12px;border-radius:8px;font-size:12px;overflow:auto;max-height:260px;white-space:pre-wrap}
+  .disclaimer{font-size:12px;color:var(--muted);margin-top:10px}
+  .set-group h3{font-family:var(--f-display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:18px 0 6px;color:var(--ink);border-left:4px solid var(--brand);padding-left:8px}
+  .set-table td{padding:5px 4px}
+  .set-table input{padding:6px 8px;max-width:110px}
+  .set-table th{font-size:12px;color:var(--muted);font-weight:600}
+  .note{background:#fff8ea;border:1px solid #f0dcb3;border-radius:10px;padding:12px 14px;font-size:13.5px;margin-bottom:14px}
+  .hidden{display:none}
+</style>
+<style>
+  /* embed mode: inside citypodsphilly.com */
+  header, .tabs, footer, #view-settings, #view-leads{display:none!important}
+  body{background:#f2f1ec}
+  main{padding:16px 14px 90px}
+  .mbar{display:none}
+  @media (max-width:880px){
+    .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:9;background:#0d0d0c;color:#f2f1ec;padding:10px 14px;gap:10px;align-items:center;justify-content:space-between;border-top:3px solid var(--brand)}
+    .mbar b{font-family:var(--f-display);font-size:18px}
+    .mbar small{display:block;color:var(--mist);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+    .mbar button{background:var(--brand);color:#0d0d0c;border:0;padding:10px 12px;font-family:var(--f-display);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div class="lock" role="img" aria-label="City Pods, Urban Living"><span class="wm" aria-hidden="true">C<i class="bar"></i>TY PODS</span><small>URBAN LIVING</small></div>
+    <div class="htxt"><h1>Basement Finishing Estimator</h1><p>A realistic price range for finishing your basement in about 2 minutes.</p></div>
+  </div>
+</header>
+<div class="tabs">
+  <button class="tab active" data-view="homeowner">Homeowner view</button>
+  <button class="tab" data-view="settings">Pricing settings</button>
+  <button class="tab" data-view="leads">Leads (demo)</button>
+</div>
+
+<main>
+<section id="view-homeowner">
+<div class="grid">
+  <div>
+    <div class="card">
+      <h2><span class="num">1</span>Basement size</h2>
+      <div class="row">
+        <div><label>Basement length (ft)</label><input type="number" id="len" value="40" min="0" step="0.5"></div>
+        <div><label>Basement width (ft)</label><input type="number" id="wid" value="15" min="0" step="0.5"></div>
+        <div><label>Ceiling height (ft)</label><input type="number" id="ht" value="7.5" min="5" max="12" step="0.25"><div class="hint" id="htWarn"></div></div>
+      </div>
+      <div class="row">
+        <div><label>Area left unfinished (sq ft)</label><input type="number" id="util" value="60" min="0">
+          <div class="hint">Furnace, water heater, electric panel and storage. A typical rowhome utility area is 50–100 sq ft.</div></div>
+        <div><label>Area to finish</label><div class="calc" id="areaOut">540 sq ft</div><div class="hint" id="wallOut"></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">2</span>Water &amp; moisture</h2>
+      <div class="row">
+        <div><label>How dry is it today?</label>
+          <select id="water">
+            <option value="dry">Dry: never any water</option>
+            <option value="damp" selected>Damp or musty at times</option>
+            <option value="wet">Water comes in after heavy rain</option>
+          </select>
+          <div class="hint">Finishing over a moisture problem leads to mold. We fix the water first.</div></div>
+        <div><label>Existing sump pump?</label>
+          <select id="sump">
+            <option value="no" selected>No / not sure</option>
+            <option value="yes">Yes, working</option>
+          </select></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">3</span>Layout, walls &amp; ceiling</h2>
+      <div class="row">
+        <div><label>Ceiling finish</label>
+          <select id="ceiling">
+            <option value="drywall" selected>Drywall (smooth, finished look)</option>
+            <option value="drop">Drop ceiling (easy access to pipes)</option>
+            <option value="open">Open, painted black (industrial)</option>
+          </select></div>
+        <div><label>Separate rooms (#)</label><input type="number" id="rooms" value="1" min="0" max="6">
+          <div class="hint">Bedroom, office or gym with walls and a door. 0 = one open space.</div></div>
+        <div><label>Flooring</label>
+          <select id="floor">
+            <option value="lvp" selected>Waterproof vinyl plank</option>
+            <option value="carpet">Carpet with moisture pad</option>
+            <option value="tile">Porcelain tile</option>
+            <option value="epoxy">Epoxy coating</option>
+          </select></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">4</span>Bathroom</h2>
+      <div class="row">
+        <div><label>Add a bathroom?</label>
+          <select id="bath">
+            <option value="none" selected>No bathroom</option>
+            <option value="half">Half bath (toilet + sink)</option>
+            <option value="full">Full bath with shower</option>
+          </select></div>
+        <div><label>Plumbing situation</label>
+          <select id="plumb">
+            <option value="rough">Drain pipes already stubbed in the floor</option>
+            <option value="gravity" selected>No drains yet: cut the slab</option>
+            <option value="ejector">No drains + below sewer line (ejector pump)</option>
+          </select>
+          <div class="hint">Not sure? Most Philadelphia basements need the slab cut. We confirm on site.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">5</span>Lighting, comfort &amp; extras</h2>
+      <div class="row">
+        <div><label>Recessed lights (#)</label><input type="number" id="lights" value="8" min="0" max="40">
+          <div class="hint" id="lightHint"></div></div>
+      </div>
+      <div class="checks">
+        <label class="chk"><input type="checkbox" id="hvac"> Extend heating &amp; A/C ducts</label>
+        <label class="chk"><input type="checkbox" id="bar"> Wet bar / kitchenette</label>
+        <label class="chk"><input type="checkbox" id="egress"> Egress window (needed for a legal bedroom)</label>
+        <label class="chk"><input type="checkbox" id="stairs" checked> Refinish basement stairs</label>
+        <label class="chk"><input type="checkbox" id="laundry"> Finished laundry area</label>
+        <label class="chk"><input type="checkbox" id="permit" checked> Permit &amp; inspections</label>
+        <label class="chk"><input type="checkbox" id="oldHome" checked> Home built before 1960</label>
+      </div>
+      <div class="hint" style="margin-top:8px">Older Philadelphia homes often have stone or brick foundation walls, low beams and old wiring that need extra work before finishing.</div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">6</span>Finish level</h2>
+      <div class="tiers" id="tierPick">
+        <label class="tier"><input type="radio" name="tier" value="0"><b>Essential</b><span>Clean, durable finishes; a great family room</span></label>
+        <label class="tier sel"><input type="radio" name="tier" value="1" checked><b>Upgraded</b><span>Better insulation, trim and flooring; designer lighting</span></label>
+        <label class="tier"><input type="radio" name="tier" value="2"><b>Luxury</b><span>Premium millwork, tile and fixtures; a true living suite</span></label>
+      </div>
+    </div>
+  </div>
+
+  <aside class="sticky">
+    <div class="card">
+      <div class="est-label">Your estimated range</div>
+      <div class="range" id="rangeOut">$0 – $0</div>
+      <div class="hint" id="tierOut">Upgraded finish level</div>
+      <div class="tiercmp" id="tierCmp"></div>
+      <div class="lockwrap" id="lockwrap">
+        <div id="breakdown" class="locked"></div>
+        <div class="lockmsg" id="lockmsg">🔒 Unlock your line-item breakdown</div>
+      </div>
+      <button class="btn" id="unlockBtn">Get my detailed estimate</button>
+      <div class="disclaimer">Planning range only. Final pricing comes after an on-site visit, a moisture check and an inspection of the foundation walls, ceiling height and electrical service.</div>
+    </div>
+  </aside>
+</div>
+</section>
+
+<section id="view-settings" class="hidden">
+  <div class="note"><b>Contractor view.</b> These are the unit prices driving the estimator, set as <b>sell prices</b> (overhead and margin included). They're placeholders. Replace them with your own numbers and the homeowner view updates instantly. Your edits are saved in this browser only. Use <b>Copy pricing</b> to send them to me so I can bake them in as the defaults.</div>
+  <div class="card">
+    <div id="settingsForm"></div>
+    <div style="margin-top:16px">
+      <button class="btn small" id="copyPricing">Copy pricing</button>
+      <button class="btn small secondary" id="resetPricing">Reset to defaults</button>
+      <span class="hint" id="copyMsg"></span>
+    </div>
+  </div>
+</section>
+
+<section id="view-leads" class="hidden">
+  <div class="note"><b>Demo only.</b> On your live website, each submission goes to your email and CRM. This tab just shows the record your team would receive, including the lead score.</div>
+  <div class="card"><div id="leadsOut" class="hint">No leads captured yet. Submit the form in the Homeowner view to see one.</div></div>
+</section>
+</main>
+<footer style="background:var(--ink);color:var(--mist);text-align:center;padding:22px 16px;font-size:13px;border-top:4px solid var(--brand)">
+  <div style="font-family:var(--f-display);color:#f2f1ec;font-size:16px;font-weight:600;margin-bottom:4px">Every project needs five stars.</div>
+  City Pods · Design · Construction · Project Management · Philadelphia &amp; suburbs · citypodsphilly.com
+</footer>
+
+<!-- LEAD MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h3>Where should we send your estimate?</h3>
+    <div class="hint" style="margin-bottom:12px">You'll see the full breakdown right away, and a City Pods project manager can follow up to schedule a free on-site measure.</div>
+    <form id="leadForm" novalidate>
+      <div class="row">
+        <div><label>Full name *</label><input type="text" id="lName" autocomplete="name"></div>
+        <div><label>Phone *</label><input type="tel" id="lPhone" autocomplete="tel"></div>
+      </div>
+      <div class="row">
+        <div><label>Email *</label><input type="email" id="lEmail" autocomplete="email"></div>
+        <div><label>ZIP code *</label><input type="text" id="lZip" inputmode="numeric" maxlength="5"></div>
+      </div>
+      <div class="row">
+        <div><label>When do you want to start?</label>
+          <select id="lTimeline">
+            <option value="asap">As soon as possible</option>
+            <option value="1-3" selected>Within 1–3 months</option>
+            <option value="3-6">3–6 months</option>
+            <option value="research">Just researching</option>
+          </select></div>
+        <div><label>Do you own the home?</label>
+          <select id="lOwner">
+            <option value="yes">Yes</option>
+            <option value="no">No, I rent</option>
+            <option value="buying">Buying/closing soon</option>
+          </select></div>
+      </div>
+      <div class="row">
+        <div><label>Budget in mind (optional)</label>
+          <select id="lBudget">
+            <option value="">Prefer not to say</option>
+            <option value="<25">Under $25k</option>
+            <option value="25-50">$25k–$50k</option>
+            <option value="50-100">$50k–$100k</option>
+            <option value="100+">$100k+</option>
+          </select></div>
+      </div>
+      <div class="err" id="lErr"></div>
+      <button type="submit" class="btn">Show my estimate</button>
+      <button type="button" class="btn secondary" id="cancelModal">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ================= PRICING CONFIG (placeholders: Philadelphia-calibrated sell prices) =================
+   Arrays are [Essential, Upgraded, Luxury]. "wall sf" = perimeter x height x 0.85. */
+const DEFAULT_PRICING = {
+  regionMultiplier: 1.00, rangeLow: 0.90, rangeHigh: 1.15,
+  demoBase: 800, demoSf: 1,
+  frameInsulWallSf: [5.5, 6.5, 8], drywallWallSf: [3, 3.5, 4.5],
+  ceiling: { drywall: [4, 4.5, 5.5], drop: [5.5, 6.5, 8.5], open: [2, 2.5, 3] },
+  electricalSf: [3.5, 4.5, 6], recessedLight: 250,
+  floor: { lvp: [6.5, 8, 10.5], carpet: [5, 6.5, 9], tile: [13, 16, 22], epoxy: [5, 7, 10] },
+  paintSf: [2, 2.5, 3.5], trimLf: [4, 6, 9],
+  room: [2000, 2400, 3200],
+  sealWallSf: 2, dehumidifier: 1800, drainLf: 70, sumpPump: 1800,
+  bath: { half: [7500, 10000, 14000], full: [13000, 17000, 24000] },
+  plumb: { rough: 0, gravity: 3500, ejector: 7500 },
+  hvac: 2800, bar: [5000, 8500, 14000], egress: 4500, stairs: [1800, 2400, 3500], laundry: 2500,
+  oldHomePct: 0.10, permitPct: 0.025, permitMin: 600
+};
+const SCHEMA = [
+  { group:'Global', items:[['regionMultiplier','Regional price multiplier','×'],['rangeLow','Range low factor (shown to homeowner)','×'],['rangeHigh','Range high factor (shown to homeowner)','×']]},
+  { group:'Prep, framing & walls', items:[
+    ['demoBase','Clean-out & prep: base','$'],['demoSf','Clean-out & prep: per sq ft','$/sf'],
+    ['frameInsulWallSf','Framing + insulation (per wall sf)','$/sf',true],['drywallWallSf','Drywall walls, hung & finished (per wall sf)','$/sf',true],
+    ['ceiling.drywall','Ceiling: drywall','$/sf',true],['ceiling.drop','Ceiling: drop/suspended','$/sf',true],['ceiling.open','Ceiling: open, spray-painted','$/sf',true],
+    ['room','Separate room (partition, door, closet)','$ each',true] ]},
+  { group:'Electrical, flooring & finishes', items:[
+    ['electricalSf','Electrical: outlets, circuits, smoke/CO','$/sf',true],['recessedLight','Recessed light (each)','$'],
+    ['floor.lvp','Waterproof vinyl plank','$/sf',true],['floor.carpet','Carpet + moisture pad','$/sf',true],['floor.tile','Porcelain tile','$/sf',true],['floor.epoxy','Epoxy coating','$/sf',true],
+    ['paintSf','Paint (per finished sf)','$/sf',true],['trimLf','Baseboard & trim','$/lf',true] ]},
+  { group:'Water & moisture', items:[
+    ['sealWallSf','Wall sealing (per wall sf)','$/sf'],['dehumidifier','Dehumidifier, installed','$'],
+    ['drainLf','Interior perimeter drain','$/lf'],['sumpPump','Sump pump, installed','$'] ]},
+  { group:'Bathroom & plumbing', items:[
+    ['bath.half','Half bath','$',true],['bath.full','Full bath','$',true],
+    ['plumb.gravity','New drains (cut slab)','$'],['plumb.ejector','New drains + ejector pump','$'] ]},
+  { group:'Extras', items:[
+    ['hvac','HVAC duct extension','$'],['bar','Wet bar / kitchenette','$',true],['egress','Egress window','$'],
+    ['stairs','Stair refinish','$',true],['laundry','Laundry area finish','$'],
+    ['oldHomePct','Older-home allowance (pre-1960)','%'],['permitPct','Permit & inspections (% of job)','%'],['permitMin','Permit minimum','$'] ]},
+];
+const TIERS = ['Essential','Upgraded','Luxury'];
+const STORE = 'basementPricing';
+
+let P = clone(DEFAULT_PRICING);
+let unlocked = false, leads = [];
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function deepMerge(a,b){ for (const k in b){ if (b[k] && typeof b[k]==='object' && !Array.isArray(b[k]) && a[k]) deepMerge(a[k], b[k]); else a[k]=b[k]; } return a; }
+try { const s = localStorage.getItem(STORE); if (s) P = deepMerge(clone(DEFAULT_PRICING), JSON.parse(s)); } catch(e){}
+function getPath(o,p){ return p.split('.').reduce((a,k)=>a[k], o); }
+function setPath(o,p,v){ const ks=p.split('.'); const last=ks.pop(); ks.reduce((a,k)=>a[k], o)[last]=v; }
+function savePricing(){ try{ localStorage.setItem(STORE, JSON.stringify(P)); }catch(e){} }
+const $ = id => document.getElementById(id);
+const num = id => Math.max(0, parseFloat($(id).value) || 0);
+const usd = n => '$' + Math.round(n).toLocaleString('en-US');
+const r100 = n => Math.round(n/100)*100;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function readInputs(){
+  return { len:num('len'), wid:num('wid'), ht:num('ht'), util:num('util'), water:$('water').value, sump:$('sump').value,
+    ceiling:$('ceiling').value, rooms:Math.round(num('rooms')), floor:$('floor').value, bath:$('bath').value, plumb:$('plumb').value,
+    lights:Math.round(num('lights')), hvac:$('hvac').checked, bar:$('bar').checked, egress:$('egress').checked, stairs:$('stairs').checked,
+    laundry:$('laundry').checked, permit:$('permit').checked, oldHome:$('oldHome').checked,
+    tier: parseInt(document.querySelector('input[name=tier]:checked').value,10) };
+}
+const FLOOR_LBL = {lvp:'Waterproof vinyl plank', carpet:'Carpet + moisture pad', tile:'Porcelain tile', epoxy:'Epoxy coating'};
+const CEIL_LBL = {drywall:'Drywall ceiling', drop:'Drop ceiling', open:'Open painted ceiling'};
+
+function geom(inp){
+  const area = Math.max(0, inp.len*inp.wid - inp.util);
+  const perim = 2*(inp.len + inp.wid);
+  const wallSf = perim * inp.ht * 0.85;
+  return {area, perim, wallSf};
+}
+function estimate(inp, t){
+  const items = []; const add = (l,a) => { if (a > 0) items.push({label:l, amt:a}); };
+  const {area, perim, wallSf} = geom(inp);
+  add('Clean-out, prep & haul-off', P.demoBase + P.demoSf*area);
+  if (inp.water === 'damp') { add(`Seal foundation walls (${Math.round(wallSf)} sf)`, wallSf*P.sealWallSf); add('Dehumidifier, installed', P.dehumidifier); }
+  if (inp.water === 'wet') {
+    add(`Interior perimeter drain (${Math.round(perim)} lf)`, perim*P.drainLf);
+    if (inp.sump !== 'yes') add('Sump pump, installed', P.sumpPump);
+    add('Dehumidifier, installed', P.dehumidifier);
+  }
+  add(`Framing & insulation (${Math.round(wallSf)} sf of wall)`, wallSf*P.frameInsulWallSf[t]);
+  add('Drywall walls, hung & finished', wallSf*P.drywallWallSf[t]);
+  add(`${CEIL_LBL[inp.ceiling]} (${Math.round(area)} sf)`, area*P.ceiling[inp.ceiling][t]);
+  add(`Separate rooms ×${inp.rooms}`, inp.rooms*P.room[t]);
+  add('Electrical: outlets, circuits, smoke/CO', area*P.electricalSf[t]);
+  add(`Recessed lights ×${inp.lights}`, inp.lights*P.recessedLight);
+  add(`${FLOOR_LBL[inp.floor]} (${Math.round(area)} sf)`, area*P.floor[inp.floor][t]);
+  add('Paint walls & ceiling', area*P.paintSf[t]);
+  add(`Baseboard & trim (${Math.round(perim)} lf)`, perim*P.trimLf[t]);
+  if (inp.bath !== 'none') {
+    add(inp.bath === 'full' ? 'Full bathroom' : 'Half bathroom', P.bath[inp.bath][t]);
+    add(inp.plumb === 'ejector' ? 'New drains + sewage ejector pump' : inp.plumb === 'gravity' ? 'New drains (cut & patch slab)' : '', P.plumb[inp.plumb]);
+  }
+  if (inp.hvac) add('Extend heating & A/C ducts', P.hvac);
+  if (inp.bar) add('Wet bar / kitchenette', P.bar[t]);
+  if (inp.egress) add('Egress window & well', P.egress);
+  if (inp.stairs) add('Refinish basement stairs', P.stairs[t]);
+  if (inp.laundry) add('Finished laundry area', P.laundry);
+  let sub = items.reduce((s,i)=>s+i.amt, 0);
+  if (inp.oldHome) { const oh = sub*P.oldHomePct; items.push({label:'Older-home allowance (hidden conditions)', amt:oh}); sub += oh; }
+  if (inp.permit) { const pm = Math.max(P.permitMin, sub*P.permitPct); items.push({label:'Permit & inspections', amt:pm}); sub += pm; }
+  const m = P.regionMultiplier; items.forEach(i => i.amt *= m);
+  const total = sub*m;
+  return { items, total, low:r100(total*P.rangeLow), high:r100(total*P.rangeHigh), area, perim, wallSf };
+}
+
+function render(){
+  const inp = readInputs(); const e = estimate(inp, inp.tier);
+  $('areaOut').textContent = Math.round(e.area).toLocaleString() + ' sq ft' + (e.area ? ` · ${usd(e.total/e.area)}/sf` : '');
+  $('wallOut').textContent = `${Math.round(e.perim)} ft of wall · ${Math.round(e.wallSf)} sq ft of wall surface`;
+  $('htWarn').textContent = inp.ht < 7 ? 'Under 7 ft: code may limit use as a bedroom or living space. We will check on site.' : '';
+  $('htWarn').style.color = inp.ht < 7 ? 'var(--hot)' : '';
+  $('lightHint').textContent = `About ${Math.max(1, Math.round(e.area/60))} lights suits ${Math.round(e.area)} sq ft.`;
+  $('rangeOut').textContent = usd(e.low) + ' – ' + usd(e.high);
+  $('tierOut').textContent = TIERS[inp.tier] + ' finish level';
+  $('tierCmp').innerHTML = TIERS.map((n,i)=>{ const x = estimate(inp,i);
+    return `<div class="${i===inp.tier?'sel':''}">${n}<b>${unlocked ? usd(x.low)+'–'+usd(x.high) : '$••k'}</b></div>`; }).join('');
+  const rows = (unlocked ? e.items : e.items.slice(0,6)).map(i => `<tr><td>${esc(i.label)}</td><td class="r">${unlocked ? usd(i.amt) : '$#,###'}</td></tr>`).join('');
+  $('breakdown').innerHTML = `<table>${rows}<tr class="total"><td>Point estimate</td><td class="r">${unlocked ? usd(e.total) : '$##,###'}</td></tr></table>`;
+  $('breakdown').classList.toggle('locked', !unlocked);
+  $('lockmsg').style.display = unlocked ? 'none' : 'grid';
+  $('unlockBtn').textContent = unlocked ? 'Schedule a free on-site visit' : 'Get my detailed estimate';
+  $('plumb').disabled = inp.bath === 'none';
+  document.querySelectorAll('.tier').forEach(l => l.classList.toggle('sel', l.querySelector('input').checked));
+}
+
+function buildSettings(){
+  let html = '';
+  SCHEMA.forEach(g => {
+    const hasTier = g.items.some(i=>i[3]);
+    html += `<div class="set-group"><h3>${g.group}</h3><table class="set-table"><tr><th>Item</th><th>Unit</th>` + (hasTier ? TIERS.map(t=>`<th>${t}</th>`).join('') : '<th>Value</th>') + '</tr>';
+    g.items.forEach(([path,label,unit,tiered]) => {
+      const v = getPath(P, path); const disp = x => unit === '%' ? +(x*100).toFixed(2) : x;
+      html += `<tr><td>${label}</td><td class="hint">${unit}</td>`;
+      if (tiered) html += v.map((x,i)=>`<td><input type="number" step="any" data-path="${path}" data-i="${i}" data-unit="${unit}" value="${disp(x)}"></td>`).join('');
+      else html += `<td><input type="number" step="any" data-path="${path}" data-unit="${unit}" value="${disp(v)}"></td>` + (hasTier ? '<td></td><td></td>' : '');
+      html += '</tr>';
+    });
+    html += '</table></div>';
+  });
+  $('settingsForm').innerHTML = html;
+  $('settingsForm').querySelectorAll('input').forEach(el => el.addEventListener('input', () => {
+    let v = parseFloat(el.value); if (isNaN(v)) return;
+    if (el.dataset.unit === '%') v = v/100;
+    if (el.dataset.i !== undefined) getPath(P, el.dataset.path)[+el.dataset.i] = v; else setPath(P, el.dataset.path, v);
+    savePricing(); render();
+  }));
+}
+function scoreLead(l){
+  let s = {asap:40,'1-3':30,'3-6':15,research:0}[l.timeline] + {yes:30,buying:20,no:-30}[l.owner];
+  if (l.budget) { const b = {'<25':25000,'25-50':50000,'50-100':100000,'100+':150000}[l.budget]; s += b >= l.estimate.low ? 20 : 5; } else s += 10;
+  if (l.estimate.high > 40000) s += 10;
+  return {score:s, grade: s>=70?'Hot':s>=40?'Warm':'Nurture'};
+}
+function renderLeads(){
+  if (!leads.length) return;
+  $('leadsOut').innerHTML = leads.slice().reverse().map(l => {
+    const cls = {Hot:'b-hot',Warm:'b-warm',Nurture:'b-nurture'}[l.grade];
+    const rec = { submitted:l.submitted, project:'Basement finishing', name:l.name, phone:l.phone, email:l.email, zip:l.zip,
+      timeline:l.timeline, owner:l.owner, budget:l.budget||'n/a', leadScore:l.score, leadGrade:l.grade,
+      finishLevel:TIERS[l.inputs.tier], finishedSqFt:Math.round(l.estimate.area), estimateRange:usd(l.estimate.low)+' – '+usd(l.estimate.high), scope:l.inputs };
+    return `<div style="margin-bottom:18px"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px">
+      <b style="color:var(--ink);font-size:15px">${esc(l.name)} · ${esc(l.zip)}</b><span class="badge ${cls}">${l.grade} · ${l.score}</span></div>
+      <pre>${esc(JSON.stringify(rec, null, 2))}</pre></div>`;
+  }).join('');
+}
+document.querySelectorAll('#view-homeowner input, #view-homeowner select').forEach(el => { el.addEventListener('input', render); el.addEventListener('change', render); });
+$('unlockBtn').addEventListener('click', () => { if (unlocked) { $('unlockBtn').textContent = 'Thanks! We will call you to schedule.'; return; } $('modal').classList.add('open'); });
+$('cancelModal').addEventListener('click', () => $('modal').classList.remove('open'));
+$('leadForm').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const name=$('lName').value.trim(), phone=$('lPhone').value.replace(/\D/g,''), email=$('lEmail').value.trim(), zip=$('lZip').value.trim();
+  let err=''; if (!name) err='Please enter your name.'; else if (phone.length<10) err='Please enter a 10-digit phone number.';
+  else if (!/^\S+@\S+\.\S+$/.test(email)) err='Please enter a valid email.'; else if (!/^\d{5}$/.test(zip)) err='Please enter a 5-digit ZIP code.';
+  $('lErr').textContent = err; if (err) return;
+  const inputs = readInputs(); const est = estimate(inputs, inputs.tier);
+  const lead = { submitted:new Date().toLocaleString(), name, phone, email, zip, timeline:$('lTimeline').value, owner:$('lOwner').value, budget:$('lBudget').value,
+    inputs, estimate:{low:est.low, high:est.high, point:Math.round(est.total), area:est.area} };
+  Object.assign(lead, scoreLead(lead)); leads.push(lead); unlocked = true;
+  $('modal').classList.remove('open'); render(); renderLeads();
+});
+document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x===b));
+  ['homeowner','settings','leads'].forEach(v => $('view-'+v).classList.toggle('hidden', v!==b.dataset.view));
+}));
+$('resetPricing').addEventListener('click', () => { P = clone(DEFAULT_PRICING); savePricing(); buildSettings(); render(); $('copyMsg').textContent='Defaults restored.'; });
+$('copyPricing').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(JSON.stringify(P, null, 2)); $('copyMsg').textContent='Copied. Paste it into our chat.'; }
+  catch(e){ $('copyMsg').textContent='Copy blocked by the browser. Screenshot this table instead.'; }
+});
+buildSettings(); render();
+</script>
+<div class="mbar" id="mbar"><div><small>Estimated range</small><b id="mbarRange"></b></div><button type="button" id="mbarBtn">See breakdown</button></div>
+<script>
+(function(){
+  var r=document.getElementById('rangeOut'), m=document.getElementById('mbarRange');
+  function sync(){ m.textContent=r.textContent; }
+  sync(); new MutationObserver(sync).observe(r,{childList:true,characterData:true,subtree:true});
+  document.getElementById('mbarBtn').addEventListener('click',function(){ document.querySelector('aside').scrollIntoView({behavior:'smooth'}); });
+})();
+</script>
+</body>
+</html>

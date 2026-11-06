@@ -312,6 +312,7 @@ footer nav a:hover{color:var(--paper)}
       <li><a href="#projects">Projects</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#estimate">Get a price</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a class="btn btn-y" href="#contact">Free consultation</a>
@@ -329,7 +330,7 @@ footer nav a:hover{color:var(--paper)}
         <p class="lede rise d2">New homes and full renovations across Philadelphia and its suburbs. One team takes your project from the first sketch to the final walkthrough.</p>
         <div class="ctas rise d3">
           <a class="btn btn-y" href="#contact">Book a free consultation <span class="arr" aria-hidden="true">&rarr;</span></a>
-          <a class="btn btn-o" href="#projects">See our work</a>
+          <a class="btn btn-o" href="#estimate">Estimate in 3 minutes</a>
         </div>
       </div>
       <figure class="hero-photo" id="slides" aria-roledescription="carousel" aria-label="Sample City Pods projects">
@@ -351,6 +352,61 @@ footer nav a:hover{color:var(--paper)}
       <div><b>Fixed-price proposals</b><small>Itemized before work begins</small></div>
     </div>
   </div>
+</section>
+
+<section id="five-stars" class="dark fs-sec" aria-label="Every project needs five stars">
+  <style>
+    .fs-sec{padding-block:clamp(48px,7vw,88px);background:var(--ink);border-top:1px solid var(--line-d)}
+    .fs-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(28px,4vw,56px);align-items:center}
+    .fs-copy h2{font-size:clamp(36px,5vw,64px);margin-top:16px}
+    .fs-copy p.lead{color:var(--mist);font-size:18px;margin-top:16px;max-width:42ch}
+    .fs-stars{display:flex;gap:6px;margin-top:22px;color:var(--brand)}
+    .fs-stars svg{width:26px;height:26px}
+    .fs-copy .ctas{margin-top:26px}
+    .fs-vid{position:relative;margin:0;background:#000;box-shadow:0 30px 80px -40px rgba(0,0,0,.9)}
+    .fs-vid::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--brand);z-index:2}
+    .fs-vid video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+    .fs-sound{position:absolute;right:14px;bottom:14px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:rgba(13,13,12,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--paper);border:1px solid var(--line-d);padding:9px 14px;font-family:var(--f-display);font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+    .fs-sound:hover{border-color:var(--brand);color:var(--brand)}
+    .fs-sound svg{width:16px;height:16px}
+    @media (max-width:880px){.fs-grid{grid-template-columns:1fr}.fs-vid{order:-1}}
+  </style>
+  <div class="wrap">
+    <div class="fs-grid">
+      <div class="fs-copy">
+        <p class="eyebrow">Our standard</p>
+        <h2>Every project needs <span class="hl">five stars.</span></h2>
+        <div class="fs-stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg>
+        </div>
+        <p class="lead">Quality, budget, schedule, logistics and a clean job site. You either get all five or you don't. Anything less means we're not done.</p>
+        <div class="ctas">
+          <a class="btn btn-y" href="#estimate">Get a price in 3 minutes <span class="arr" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+      <figure class="fs-vid">
+        <video id="fs-video" autoplay muted loop playsinline preload="metadata" poster="img/city-pods-five-stars-poster.jpg" width="1920" height="1080" aria-label="City Pods: Every project needs five stars, 30-second video">
+          <source src="img/city-pods-five-stars.mp4" type="video/mp4">
+        </video>
+        <button type="button" class="fs-sound" id="fs-sound" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4z"/><path id="fs-wave" d="M23 9l-6 6M17 9l6 6"/></svg><span>Sound on</span></button>
+      </figure>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var v=document.getElementById('fs-video'), b=document.getElementById('fs-sound'), w=document.getElementById('fs-wave'), t=b.querySelector('span');
+    b.addEventListener('click', function(){
+      v.muted=!v.muted;
+      if(!v.muted){ v.currentTime=0; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+      b.setAttribute('aria-pressed', String(!v.muted));
+      t.textContent = v.muted ? 'Sound on' : 'Sound off';
+      w.setAttribute('d', v.muted ? 'M23 9l-6 6M17 9l6 6' : 'M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14');
+    });
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var p=v.play(); if(p&&p.catch)p.catch(function(){}); } else v.pause(); }); },{threshold:.25}).observe(v);
+    }
+  })();
+  </script>
 </section>
 
 <section id="services" class="light">
@@ -377,6 +433,57 @@ footer nav a:hover{color:var(--paper)}
       </article>
     </div>
   </div>
+</section>
+
+<section id="estimate" class="light est-sec">
+  <style>
+    .est-sec{background:var(--paper-2)}
+    .est-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .est-tabs{gap:12px}
+    .est-tabs .chip{display:inline-flex;align-items:center;gap:10px;padding:12px 22px 12px 16px;font-size:15px;font-weight:600;background:var(--brand);border:2px solid var(--brand);color:var(--ink)}
+    .est-tabs .chip svg{width:26px;height:26px;stroke-width:2;flex:none;transition:transform .2s var(--ease)}
+    .est-tabs .chip:hover{background:#e4d23b;border-color:#e4d23b}
+    .est-tabs .chip:hover svg{transform:scale(1.1)}
+    .est-tabs .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--brand)}
+    .est-frame{background:#f2f1ec;border-top:6px solid var(--brand);box-shadow:0 18px 50px -30px rgba(13,13,12,.45)}
+    .est-frame iframe{display:block;width:100%;height:clamp(640px,86vh,1040px);border:0}
+    .est-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 22px;padding:0;list-style:none}
+    .est-steps li{background:#fff;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--stone)}
+    .est-steps b{display:block;font-family:var(--f-display);color:var(--ink);font-size:17px}
+    .est-steps i{flex:none;font-style:normal;width:30px;height:30px;display:grid;place-items:center;background:var(--brand);color:var(--ink);font-family:var(--f-display);font-weight:700}
+    .est-note{margin-top:14px;font-size:14px;color:var(--stone);max-width:80ch}
+    @media (max-width:760px){.est-steps{grid-template-columns:1fr}}
+  </style>
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">Instant estimate</p><h2>Get a price <span class="hl">in 3 minutes.</span></h2></div>
+      <p>Pick your project, enter a few measurements and see a realistic price range for your home and finish level, based on current Philadelphia-area costs. No obligation.</p>
+    </div>
+    <ol class="est-steps">
+      <li><i>1</i><span><b>Choose a project</b>Bathroom, kitchen, flooring or basement.</span></li>
+      <li><i>2</i><span><b>Enter the basics</b>Room size, fixtures and finish level.</span></li>
+      <li><i>3</i><span><b>See your range</b>Unlock the itemized breakdown and book a free on-site measure.</span></li>
+    </ol>
+    <div class="est-tabs" role="tablist" aria-label="Choose a project to estimate">
+      <button type="button" class="chip" role="tab" aria-pressed="true" aria-selected="true" data-est="bath" data-title="Bathroom remodel estimator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12h18v3a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-3z"/><path d="M6 12V5a2 2 0 0 1 4 0"/><path d="M7 20l-1 2M17 20l1 2"/></svg>Bathroom</button>
+      <button type="button" class="chip" role="tab" aria-pressed="false" aria-selected="false" data-est="kitchen" data-title="Kitchen remodel estimator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="10" width="18" height="11"/><path d="M3 14h18M8 6v4M12 4v6M16 6v4"/></svg>Kitchen</button>
+      <button type="button" class="chip" role="tab" aria-pressed="false" aria-selected="false" data-est="flooring" data-title="Flooring estimator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h18v18H3z"/><path d="M3 9h9M12 3v6M12 15h9M12 15v6M3 15h4M7 9v6"/></svg>Flooring</button>
+      <button type="button" class="chip" role="tab" aria-pressed="false" aria-selected="false" data-est="basement" data-title="Basement finishing estimator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10l9-6 9 6"/><path d="M5 9v4h14V9"/><path d="M3 13h18v8H3z"/><path d="M7 21v-4h4v4M14 16h4"/></svg>Basement</button>
+    </div>
+    <div class="est-frame">
+      <iframe id="est-if" src="estimate/bath.html" title="Bathroom remodel estimator" loading="lazy"></iframe>
+    </div>
+    <p class="est-note">Estimates are planning ranges, not a contract price. Your fixed-price proposal comes after a free on-site measure and an inspection of existing conditions.</p>
+  </div>
+  <script>
+  (function(){
+    var f=document.getElementById('est-if'), tabs=document.querySelectorAll('.est-tabs .chip');
+    tabs.forEach(function(t){ t.addEventListener('click', function(){
+      tabs.forEach(function(x){ var on=x===t; x.setAttribute('aria-pressed', on); x.setAttribute('aria-selected', on); });
+      f.src='estimate/'+t.dataset.est+'.html'; f.title=t.dataset.title;
+    }); });
+  })();
+  </script>
 </section>
 
 <section id="build" class="dark">

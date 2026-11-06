@@ -8,7 +8,7 @@ const out = path.join(root, 'dist');
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
 
-for (const item of ['index.html', 'img']) {
+for (const item of ['index.html', 'img', 'estimate']) {
   fs.cpSync(path.join(root, item), path.join(out, item), { recursive: true });
 }
 

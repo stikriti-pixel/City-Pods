@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>City Pods · Kitchen Remodel Estimator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f2f1ec; --card:#ffffff; --ink:#0d0d0c; --muted:#5f5d56; --line:#d6d3c9;
+    --brand:#d6c531; --accent:#0d0d0c; --accent-2:#f6f1cf; --warn:#9a5b12; --hot:#b3261e;
+    --mist:#a7a59c; --f-display:"Outfit","Avenir Next",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Instrument Sans',system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.45}
+  header{background:var(--ink);color:#f2f1ec;padding:20px 20px 18px;border-bottom:4px solid var(--brand)}
+  .hwrap{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+  .lock{display:flex;flex-direction:column;gap:6px}
+  .wm{font-family:var(--f-display);font-weight:800;font-size:30px;line-height:.9;letter-spacing:-.02em;white-space:nowrap}
+  .wm .bar{display:inline-block;width:.16em;height:.71em;background:var(--brand);margin:0 .07em;vertical-align:baseline}
+  .lock small{font-family:var(--f-display);font-weight:500;font-size:9.5px;letter-spacing:.62em;color:var(--mist)}
+  .htxt{text-align:right}
+  .htxt h1{margin:0;font-family:var(--f-display);font-size:20px;font-weight:700;letter-spacing:-.01em}
+  .htxt p{margin:3px 0 0;color:var(--mist);font-size:14px}
+  @media (max-width:600px){.htxt{text-align:left}}
+  .tabs{display:flex;gap:4px;padding:0 16px;background:var(--ink);overflow-x:auto}
+  .tab{background:transparent;border:0;color:var(--mist);padding:11px 14px;font-family:var(--f-display);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;white-space:nowrap}
+  .tab.active{background:var(--bg);color:var(--ink);box-shadow:inset 0 3px 0 var(--brand)}
+  main{max-width:1100px;margin:0 auto;padding:18px 16px 60px}
+  .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+  @media (max-width:880px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:0;padding:18px;margin-bottom:14px}
+  .card h2{margin:0 0 12px;font-family:var(--f-display);font-size:18px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+  .num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:0;background:var(--brand);color:var(--ink);font-family:var(--f-display);font-size:12px;font-weight:700}
+  .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:10px}
+  label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:4px}
+  input[type=number],input[type=text],input[type=email],input[type=tel],select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+  input:focus,select:focus{outline:2px solid var(--ink);outline-offset:-1px}
+  .hint{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .calc{font-size:13px;background:var(--accent-2);color:var(--ink);padding:6px 10px;border-radius:6px;display:inline-block;margin-top:2px;font-weight:600}
+  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+  .chk{display:flex;gap:8px;align-items:center;padding:9px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;color:var(--ink);margin:0}
+  .chk input{accent-color:var(--ink);width:16px;height:16px}
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .tier{border:1.5px solid var(--line);border-radius:0;padding:10px;cursor:pointer;margin:0;color:var(--ink)}
+  .tier input{display:none}
+  .tier b{display:block;font-size:15px;font-family:var(--f-display)}
+  .tier span{font-size:12px;color:var(--muted);font-weight:400}
+  .tier.sel{border-color:var(--brand);background:var(--accent-2);box-shadow:inset 4px 0 0 var(--brand)}
+  .sticky{position:sticky;top:12px}
+  .est-label{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .range{font-family:var(--f-display);font-size:32px;font-weight:800;letter-spacing:-.02em;margin:4px 0 2px;color:var(--ink)}
+  .btn{display:block;width:100%;background:var(--brand);color:var(--ink);border:0;border-radius:0;padding:14px;font-family:var(--f-display);font-size:15px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;cursor:pointer;margin-top:12px}
+  .btn:hover{background:#e4d23b}
+  .btn.secondary{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn.small{display:inline-block;width:auto;padding:8px 14px;margin:0 8px 0 0;font-size:14px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  td,th{padding:7px 4px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  td.r,th.r{text-align:right;white-space:nowrap}
+  tr.total td{font-weight:700;border-bottom:0;border-top:2px solid var(--ink)}
+  .tiercmp{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}
+  .tiercmp div{background:var(--bg);border-radius:0;padding:8px;text-align:center;font-size:12px;color:var(--muted)}
+  .tiercmp div b{display:block;font-size:14px;color:var(--ink)}
+  .tiercmp div.sel{background:var(--accent-2);outline:1.5px solid var(--brand)}
+  .locked{filter:blur(5px);user-select:none;pointer-events:none}
+  .lockwrap{position:relative}
+  .lockmsg{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:600;color:var(--ink);font-size:14px;padding:10px}
+  .modal-bg{position:fixed;inset:0;background:rgba(20,30,26,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+  .modal-bg.open{display:flex}
+  .modal{background:#fff;border-radius:0;border-top:5px solid var(--brand);max-width:460px;width:100%;padding:20px;max-height:92vh;overflow:auto}
+  .modal h3{margin:0 0 4px;font-family:var(--f-display);font-size:20px}
+  .err{color:var(--hot);font-size:13px;margin-top:6px;min-height:1em}
+  .badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700}
+  .b-hot{background:#fbe4e2;color:var(--hot)} .b-warm{background:#fdf0dc;color:var(--warn)} .b-nurture{background:#e6ecf5;color:#2f4f7f}
+  pre{background:#11181a;color:#d6e6e0;padding:12px;border-radius:8px;font-size:12px;overflow:auto;max-height:260px;white-space:pre-wrap}
+  .disclaimer{font-size:12px;color:var(--muted);margin-top:10px}
+  .set-group h3{font-family:var(--f-display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:18px 0 6px;color:var(--ink);border-left:4px solid var(--brand);padding-left:8px}
+  .set-table td{padding:5px 4px}
+  .set-table input{padding:6px 8px;max-width:110px}
+  .set-table th{font-size:12px;color:var(--muted);font-weight:600}
+  .note{background:#fff8ea;border:1px solid #f0dcb3;border-radius:10px;padding:12px 14px;font-size:13.5px;margin-bottom:14px}
+  .hidden{display:none}
+</style>
+
+<style>
+  /* embed mode: inside citypodsphilly.com */
+  header, .tabs, footer, #view-settings, #view-leads{display:none!important}
+  body{background:#f2f1ec}
+  main{padding:16px 14px 90px}
+  .mbar{display:none}
+  @media (max-width:880px){
+    .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:9;background:#0d0d0c;color:#f2f1ec;padding:10px 14px;gap:10px;align-items:center;justify-content:space-between;border-top:3px solid var(--brand)}
+    .mbar b{font-family:var(--f-display);font-size:18px}
+    .mbar small{display:block;color:var(--mist);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+    .mbar button{background:var(--brand);color:#0d0d0c;border:0;padding:10px 12px;font-family:var(--f-display);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div class="lock" role="img" aria-label="City Pods, Urban Living"><span class="wm" aria-hidden="true">C<i class="bar"></i>TY PODS</span><small>URBAN LIVING</small></div>
+    <div class="htxt"><h1>Kitchen Remodel Estimator</h1><p>A realistic price range for your kitchen in about 2 minutes.</p></div>
+  </div>
+</header>
+<div class="tabs">
+  <button class="tab active" data-view="homeowner">Homeowner view</button>
+  <button class="tab" data-view="settings">Pricing settings</button>
+  <button class="tab" data-view="leads">Leads (demo)</button>
+</div>
+
+<main>
+<section id="view-homeowner">
+<div class="grid">
+  <div>
+    <div class="card">
+      <h2><span class="num">1</span>Kitchen size &amp; layout</h2>
+      <div class="row">
+        <div><label>Room length (ft)</label><input type="number" id="len" value="12" min="0" step="0.5"></div>
+        <div><label>Room width (ft)</label><input type="number" id="wid" value="10" min="0" step="0.5"></div>
+        <div><label>Floor area</label><div class="calc" id="floorSfOut">120 sq ft</div></div>
+      </div>
+      <div class="row">
+        <div><label>Layout</label>
+          <select id="layout">
+            <option value="galley">Galley / one wall</option>
+            <option value="l" selected>L-shape</option>
+            <option value="u">U-shape</option>
+          </select></div>
+        <div><label>Base cabinets (linear ft)</label><input type="number" id="baseLf" value="16" min="0">
+          <div class="hint">Measure along the wall under the counter. Count corners once.</div></div>
+        <div><label>Wall/upper cabinets (linear ft)</label><input type="number" id="wallLf" value="12" min="0"></div>
+      </div>
+      <div class="row">
+        <div><label>Island length (ft)</label><input type="number" id="island" value="0" min="0" step="0.5">
+          <div class="hint">0 = no island. A typical island is 6–8 ft.</div></div>
+        <div><label>Countertop area</label><div class="calc" id="ctSfOut">34 sq ft</div>
+          <div class="hint">Calculated from base cabinets (25.5" deep) + island (42" deep).</div></div>
+        <div><label>Backsplash (sq ft)</label><input type="number" id="splash" value="30" min="0">
+          <div class="hint">About 1.5 sq ft per linear ft of counter for a standard 18" backsplash.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">2</span>Cabinets &amp; countertops</h2>
+      <div class="row">
+        <div><label>Cabinets</label>
+          <select id="cab">
+            <option value="paint">Keep boxes: paint/refinish</option>
+            <option value="reface">Keep boxes: new doors &amp; fronts (reface)</option>
+            <option value="new" selected>All new cabinets</option>
+          </select></div>
+        <div><label>Countertop material</label>
+          <select id="top">
+            <option value="laminate">Laminate</option>
+            <option value="butcher">Butcher block</option>
+            <option value="granite">Granite</option>
+            <option value="quartz" selected>Quartz</option>
+            <option value="marble">Quartzite / marble</option>
+          </select></div>
+      </div>
+      <label class="chk" style="max-width:340px"><input type="checkbox" id="sink" checked> New sink &amp; faucet</label>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">3</span>Appliances &amp; flooring</h2>
+      <div class="row">
+        <div><label>Appliances</label>
+          <select id="appl">
+            <option value="keep">Keep existing appliances</option>
+            <option value="new" selected>New package (fridge, range, dishwasher, microwave)</option>
+          </select></div>
+        <div><label>Flooring</label>
+          <select id="floor">
+            <option value="keep">Keep existing floor</option>
+            <option value="lvp" selected>Luxury vinyl plank</option>
+            <option value="tile">Porcelain tile</option>
+            <option value="wood">Hardwood</option>
+          </select></div>
+      </div>
+      <div class="checks">
+        <label class="chk"><input type="checkbox" id="hood"> Vented range hood (ducted outside)</label>
+        <label class="chk"><input type="checkbox" id="gas"> Run new gas line</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">4</span>Layout changes, lighting &amp; extras</h2>
+      <div class="row">
+        <div><label>Remove a wall?</label>
+          <select id="wallRemove">
+            <option value="none" selected>No</option>
+            <option value="nonbearing">Yes: non-load-bearing</option>
+            <option value="bearing">Yes: load-bearing (beam &amp; engineer)</option>
+          </select>
+          <div class="hint">Not sure? Pick load-bearing. We'll confirm on site.</div></div>
+        <div><label>Recessed lights (#)</label><input type="number" id="lights" value="4" min="0" max="16"></div>
+        <div><label>Pendant lights (#)</label><input type="number" id="pendants" value="0" min="0" max="6"></div>
+      </div>
+      <div class="row">
+        <div><label>Drywall repair/replace (sq ft)</label><input type="number" id="drywall" value="0" min="0"></div>
+      </div>
+      <div class="checks">
+        <label class="chk"><input type="checkbox" id="ucl" checked> Under-cabinet lighting</label>
+        <label class="chk"><input type="checkbox" id="elec"> Electrical upgrade (new circuits)</label>
+        <label class="chk"><input type="checkbox" id="relocate"> Move sink/plumbing</label>
+        <label class="chk"><input type="checkbox" id="paint" checked> Paint walls &amp; ceiling</label>
+        <label class="chk"><input type="checkbox" id="permit" checked> Permit &amp; inspections</label>
+        <label class="chk"><input type="checkbox" id="oldHome" checked> Home built before 1960</label>
+      </div>
+      <div class="hint" style="margin-top:8px">Most Philadelphia rowhomes are pre-1960. Older homes often hide knob-and-tube wiring, undersized electrical service or cast-iron drains that must be brought up to code once walls are open.</div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">5</span>Finish level</h2>
+      <div class="tiers" id="tierPick">
+        <label class="tier"><input type="radio" name="tier" value="0"><b>Essential</b><span>Stock cabinets, builder appliances, ceramic backsplash</span></label>
+        <label class="tier sel"><input type="radio" name="tier" value="1" checked><b>Upgraded</b><span>Semi-custom soft-close cabinets, stainless package, designer tile</span></label>
+        <label class="tier"><input type="radio" name="tier" value="2"><b>Luxury</b><span>Custom cabinetry, pro-style appliances, premium fixtures</span></label>
+      </div>
+      <div class="hint" style="margin-top:8px">Finish level sets cabinet, backsplash, sink/faucet, appliance and paint grades. Countertop and flooring follow your picks above.</div>
+    </div>
+  </div>
+
+  <aside class="sticky">
+    <div class="card">
+      <div class="est-label">Your estimated range</div>
+      <div class="range" id="rangeOut">$0 – $0</div>
+      <div class="hint" id="tierOut">Upgraded finish level</div>
+      <div class="tiercmp" id="tierCmp"></div>
+      <div class="lockwrap" id="lockwrap">
+        <div id="breakdown" class="locked"></div>
+        <div class="lockmsg" id="lockmsg">🔒 Unlock your line-item breakdown</div>
+      </div>
+      <button class="btn" id="unlockBtn">Get my detailed estimate</button>
+      <div class="disclaimer">Planning range only. Final pricing comes after an on-site measure, design and inspection of existing conditions (framing, electrical service, plumbing, subfloor).</div>
+    </div>
+  </aside>
+</div>
+</section>
+
+<section id="view-settings" class="hidden">
+  <div class="note"><b>Contractor view.</b> These are the unit prices driving the estimator, set as <b>sell prices</b> (overhead and margin included). They're placeholders. Replace them with your own numbers and the homeowner view updates instantly. Your edits are saved in this browser only. Use <b>Copy pricing</b> to send them to me so I can bake them in as the defaults.</div>
+  <div class="card">
+    <div id="settingsForm"></div>
+    <div style="margin-top:16px">
+      <button class="btn small" id="copyPricing">Copy pricing</button>
+      <button class="btn small secondary" id="resetPricing">Reset to defaults</button>
+      <span class="hint" id="copyMsg"></span>
+    </div>
+  </div>
+</section>
+
+<section id="view-leads" class="hidden">
+  <div class="note"><b>Demo only.</b> On your live website, each submission goes to your email and CRM. This tab just shows the record your team would receive, including the lead score.</div>
+  <div class="card"><div id="leadsOut" class="hint">No leads captured yet. Submit the form in the Homeowner view to see one.</div></div>
+</section>
+</main>
+<footer style="background:var(--ink);color:var(--mist);text-align:center;padding:22px 16px;font-size:13px;border-top:4px solid var(--brand)">
+  <div style="font-family:var(--f-display);color:#f2f1ec;font-size:16px;font-weight:600;margin-bottom:4px">Every project needs five stars.</div>
+  City Pods · Design · Construction · Project Management · Philadelphia &amp; suburbs · citypodsphilly.com
+</footer>
+
+<!-- LEAD MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h3>Where should we send your estimate?</h3>
+    <div class="hint" style="margin-bottom:12px">You'll see the full breakdown right away, and a City Pods designer can follow up to schedule a free on-site measure.</div>
+    <form id="leadForm" novalidate>
+      <div class="row">
+        <div><label>Full name *</label><input type="text" id="lName" autocomplete="name"></div>
+        <div><label>Phone *</label><input type="tel" id="lPhone" autocomplete="tel"></div>
+      </div>
+      <div class="row">
+        <div><label>Email *</label><input type="email" id="lEmail" autocomplete="email"></div>
+        <div><label>ZIP code *</label><input type="text" id="lZip" inputmode="numeric" maxlength="5"></div>
+      </div>
+      <div class="row">
+        <div><label>When do you want to start?</label>
+          <select id="lTimeline">
+            <option value="asap">As soon as possible</option>
+            <option value="1-3" selected>Within 1–3 months</option>
+            <option value="3-6">3–6 months</option>
+            <option value="research">Just researching</option>
+          </select></div>
+        <div><label>Do you own the home?</label>
+          <select id="lOwner">
+            <option value="yes">Yes</option>
+            <option value="no">No, I rent</option>
+            <option value="buying">Buying/closing soon</option>
+          </select></div>
+      </div>
+      <div class="row">
+        <div><label>Budget in mind (optional)</label>
+          <select id="lBudget">
+            <option value="">Prefer not to say</option>
+            <option value="<25">Under $25k</option>
+            <option value="25-50">$25k–$50k</option>
+            <option value="50-100">$50k–$100k</option>
+            <option value="100+">$100k+</option>
+          </select></div>
+      </div>
+      <div class="err" id="lErr"></div>
+      <button type="submit" class="btn">Show my estimate</button>
+      <button type="button" class="btn secondary" id="cancelModal">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ================= PRICING CONFIG (placeholders: sell prices) =================
+   Arrays are [Essential, Upgraded, Luxury]. */
+const DEFAULT_PRICING = {
+  regionMultiplier: 1.00,
+  rangeLow: 0.90, rangeHigh: 1.15,
+  demoBase: 2500, demoPerSf: 6,
+  baseCabLf: [225, 450, 900], wallCabLf: [175, 350, 700], cabInstallLf: 90,
+  islandPerFt: [600, 1000, 1600],
+  paintCabLf: 120, refaceLf: [300, 400, 550],
+  top: { laminate: 40, butcher: 75, granite: 75, quartz: 85, marble: 160 },
+  topFabFlat: 350,
+  splashLaborSf: 18, splashMatSf: [6, 15, 30],
+  floor: { lvp: 9, tile: 18, wood: 14 },
+  sinkFaucet: [700, 1400, 2800],
+  appliances: [4500, 9000, 25000], applInstall: 600,
+  hood: 1200, gas: 1100,
+  ucLightLf: 45, recessedLight: 250, pendant: 350,
+  elec: 1800, plumbingRelocate: 2500,
+  wallRemove: { nonbearing: 2500, bearing: 11000 },
+  drywallSf: 6,
+  paint: [900, 1200, 1600],
+  oldHomePct: 0.10,
+  permitPct: 0.03, permitMin: 600
+};
+
+const SCHEMA = [
+  { group: 'Global', items: [
+    ['regionMultiplier','Regional price multiplier','×'],
+    ['rangeLow','Range low factor (shown to homeowner)','×'],
+    ['rangeHigh','Range high factor (shown to homeowner)','×'],
+  ]},
+  { group: 'Demo & cabinets', items: [
+    ['demoBase','Demolition & haul-off: base','$'],
+    ['demoPerSf','Demolition: per floor sq ft','$/sf'],
+    ['baseCabLf','New base cabinets (incl. hardware)','$/lf', true],
+    ['wallCabLf','New wall cabinets (incl. hardware)','$/lf', true],
+    ['cabInstallLf','Cabinet install','$/lf'],
+    ['islandPerFt','Island cabinetry (excl. top)','$/ft', true],
+    ['paintCabLf','Paint/refinish existing cabinets','$/lf'],
+    ['refaceLf','Reface (new doors & fronts)','$/lf', true],
+  ]},
+  { group: 'Countertops & backsplash', items: [
+    ['top.laminate','Laminate, installed','$/sf'],
+    ['top.butcher','Butcher block, installed','$/sf'],
+    ['top.granite','Granite, installed','$/sf'],
+    ['top.quartz','Quartz, installed','$/sf'],
+    ['top.marble','Quartzite / marble, installed','$/sf'],
+    ['topFabFlat','Sink/cooktop cutouts & edge','$'],
+    ['splashLaborSf','Backsplash labor','$/sf'],
+    ['splashMatSf','Backsplash tile allowance','$/sf', true],
+  ]},
+  { group: 'Appliances, plumbing, flooring', items: [
+    ['appliances','Appliance package allowance','$', true],
+    ['applInstall','Appliance delivery & install','$'],
+    ['hood','Vented hood ducting','$'],
+    ['gas','New gas line','$'],
+    ['sinkFaucet','Sink & faucet, installed','$', true],
+    ['plumbingRelocate','Sink/plumbing relocation','$'],
+    ['floor.lvp','LVP flooring, installed','$/sf'],
+    ['floor.tile','Porcelain tile flooring, installed','$/sf'],
+    ['floor.wood','Hardwood flooring, installed','$/sf'],
+  ]},
+  { group: 'Structure, electrical & finishes', items: [
+    ['wallRemove.nonbearing','Remove non-load-bearing wall','$'],
+    ['wallRemove.bearing','Remove load-bearing wall (beam + engineer)','$'],
+    ['elec','Electrical upgrade (circuits)','$'],
+    ['ucLightLf','Under-cabinet lighting','$/lf'],
+    ['recessedLight','Recessed light (each)','$'],
+    ['pendant','Pendant light (each, incl. fixture)','$'],
+    ['drywallSf','Drywall repair/replace','$/sf'],
+    ['paint','Paint walls & ceiling','$', true],
+    ['oldHomePct','Older-home allowance (pre-1960)','%'],
+    ['permitPct','Permit & inspections (% of job)','%'],
+    ['permitMin','Permit minimum','$'],
+  ]},
+];
+const TIERS = ['Essential','Upgraded','Luxury'];
+const STORE = 'kitchenPricing';
+
+let P = clone(DEFAULT_PRICING);
+let unlocked = false;
+let leads = [];
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+try { const s = localStorage.getItem(STORE); if (s) P = Object.assign(clone(DEFAULT_PRICING), JSON.parse(s)); } catch(e){}
+
+function getPath(o, p){ return p.split('.').reduce((a,k)=>a[k], o); }
+function setPath(o, p, v){ const ks=p.split('.'); const last=ks.pop(); ks.reduce((a,k)=>a[k], o)[last]=v; }
+function savePricing(){ try{ localStorage.setItem(STORE, JSON.stringify(P)); }catch(e){} }
+
+const $ = id => document.getElementById(id);
+const num = id => Math.max(0, parseFloat($(id).value) || 0);
+const usd = n => '$' + Math.round(n).toLocaleString('en-US');
+const r100 = n => Math.round(n/100)*100;
+
+function readInputs(){
+  return {
+    len: num('len'), wid: num('wid'), layout: $('layout').value,
+    baseLf: num('baseLf'), wallLf: num('wallLf'), island: num('island'), splash: num('splash'),
+    cab: $('cab').value, top: $('top').value, sink: $('sink').checked,
+    appl: $('appl').value, floor: $('floor').value, hood: $('hood').checked, gas: $('gas').checked,
+    wallRemove: $('wallRemove').value, lights: Math.round(num('lights')), pendants: Math.round(num('pendants')),
+    drywall: num('drywall'), ucl: $('ucl').checked, elec: $('elec').checked, relocate: $('relocate').checked,
+    paint: $('paint').checked, permit: $('permit').checked, oldHome: $('oldHome').checked,
+    tier: parseInt(document.querySelector('input[name=tier]:checked').value,10)
+  };
+}
+
+const TOP_LABEL = {laminate:'Laminate', butcher:'Butcher block', granite:'Granite', quartz:'Quartz', marble:'Quartzite/marble'};
+const FLOOR_LABEL = {lvp:'LVP', tile:'Porcelain tile', wood:'Hardwood'};
+
+function estimate(inp, t){
+  const items = [];
+  const add = (label, amt) => { if (amt > 0) items.push({label, amt}); };
+  const floorSf = inp.len * inp.wid;
+  const ctSf = inp.baseLf * (25.5/12) + inp.island * 3.5;
+
+  add('Demolition & haul-off', P.demoBase + P.demoPerSf * floorSf);
+  if (inp.wallRemove !== 'none') add(inp.wallRemove === 'bearing' ? 'Remove load-bearing wall (beam & engineer)' : 'Remove non-load-bearing wall', P.wallRemove[inp.wallRemove]);
+  const lf = inp.baseLf + inp.wallLf;
+  if (inp.cab === 'new') {
+    add(`New cabinets (${Math.round(inp.baseLf)} lf base, ${Math.round(inp.wallLf)} lf wall)`, inp.baseLf*P.baseCabLf[t] + inp.wallLf*P.wallCabLf[t] + lf*P.cabInstallLf);
+  } else if (inp.cab === 'reface') {
+    add(`Reface cabinets (${Math.round(lf)} lf)`, lf * P.refaceLf[t]);
+  } else {
+    add(`Paint/refinish cabinets (${Math.round(lf)} lf)`, lf * P.paintCabLf);
+  }
+  if (inp.island > 0) add(`Island cabinetry (${inp.island} ft)`, inp.island * P.islandPerFt[t]);
+  if (ctSf > 0) add(`${TOP_LABEL[inp.top]} countertops (${Math.round(ctSf)} sf)`, ctSf * P.top[inp.top] + P.topFabFlat);
+  add(`Backsplash tile (${Math.round(inp.splash)} sf)`, inp.splash * (P.splashLaborSf + P.splashMatSf[t]));
+  if (inp.sink) add('Sink & faucet', P.sinkFaucet[t]);
+  if (inp.relocate) add('Sink/plumbing relocation', P.plumbingRelocate);
+  if (inp.appl === 'new') add('Appliance package, delivered & installed', P.appliances[t] + P.applInstall);
+  if (inp.hood) add('Vented range hood ducting', P.hood);
+  if (inp.gas) add('New gas line', P.gas);
+  if (inp.floor !== 'keep') add(`${FLOOR_LABEL[inp.floor]} flooring (${Math.round(floorSf)} sf)`, floorSf * P.floor[inp.floor]);
+  if (inp.elec) add('Electrical upgrade (new circuits)', P.elec);
+  if (inp.ucl) add('Under-cabinet lighting', inp.wallLf * P.ucLightLf);
+  add(`Recessed lights ×${inp.lights}`, inp.lights * P.recessedLight);
+  add(`Pendant lights ×${inp.pendants}`, inp.pendants * P.pendant);
+  add(`Drywall (${Math.round(inp.drywall)} sf)`, inp.drywall * P.drywallSf);
+  if (inp.paint) add('Paint walls & ceiling', P.paint[t]);
+
+  let sub = items.reduce((s,i)=>s+i.amt, 0);
+  if (inp.oldHome) { const oh = sub * P.oldHomePct; items.push({label:'Older-home allowance (hidden conditions)', amt: oh}); sub += oh; }
+  if (inp.permit) { const pm = Math.max(P.permitMin, sub * P.permitPct); items.push({label:'Permit & inspections', amt: pm}); sub += pm; }
+  const m = P.regionMultiplier;
+  items.forEach(i => i.amt *= m);
+  const total = sub * m;
+  return { items, total, low: r100(total * P.rangeLow), high: r100(total * P.rangeHigh), floorSf, ctSf };
+}
+
+function render(){
+  const inp = readInputs();
+  const e = estimate(inp, inp.tier);
+  $('floorSfOut').textContent = Math.round(e.floorSf) + ' sq ft';
+  $('ctSfOut').textContent = Math.round(e.ctSf) + ' sq ft';
+  $('rangeOut').textContent = usd(e.low) + ' – ' + usd(e.high);
+  $('tierOut').textContent = TIERS[inp.tier] + ' finish level';
+  $('tierCmp').innerHTML = TIERS.map((n,i)=>{
+    const x = estimate(inp, i);
+    return `<div class="${i===inp.tier?'sel':''}">${n}<b>${unlocked ? usd(x.low)+'–'+usd(x.high) : '$••k'}</b></div>`;
+  }).join('');
+  const rows = (unlocked ? e.items : e.items.slice(0,6)).map(i =>
+    `<tr><td>${i.label}</td><td class="r">${unlocked ? usd(i.amt) : '$#,###'}</td></tr>`).join('');
+  $('breakdown').innerHTML = `<table>${rows}<tr class="total"><td>Point estimate</td><td class="r">${unlocked ? usd(e.total) : '$##,###'}</td></tr></table>`;
+  $('breakdown').classList.toggle('locked', !unlocked);
+  $('lockmsg').style.display = unlocked ? 'none' : 'grid';
+  $('unlockBtn').textContent = unlocked ? 'Schedule a free on-site measure' : 'Get my detailed estimate';
+  document.querySelectorAll('.tier').forEach(l => l.classList.toggle('sel', l.querySelector('input').checked));
+}
+
+function buildSettings(){
+  let html = '';
+  SCHEMA.forEach(g => {
+    const hasTier = g.items.some(i=>i[3]);
+    html += `<div class="set-group"><h3>${g.group}</h3><table class="set-table"><tr><th>Item</th><th>Unit</th>`;
+    html += hasTier ? TIERS.map(t=>`<th>${t}</th>`).join('') : '<th>Value</th>';
+    html += '</tr>';
+    g.items.forEach(([path,label,unit,tiered]) => {
+      const v = getPath(P, path);
+      const disp = x => unit === '%' ? +(x*100).toFixed(2) : x;
+      html += `<tr><td>${label}</td><td class="hint">${unit}</td>`;
+      if (tiered) html += v.map((x,i)=>`<td><input type="number" step="any" data-path="${path}" data-i="${i}" data-unit="${unit}" value="${disp(x)}"></td>`).join('');
+      else html += `<td><input type="number" step="any" data-path="${path}" data-unit="${unit}" value="${disp(v)}"></td>` + (hasTier ? '<td></td><td></td>' : '');
+      html += '</tr>';
+    });
+    html += '</table></div>';
+  });
+  $('settingsForm').innerHTML = html;
+  $('settingsForm').querySelectorAll('input').forEach(el => el.addEventListener('input', () => {
+    let v = parseFloat(el.value); if (isNaN(v)) return;
+    if (el.dataset.unit === '%') v = v/100;
+    if (el.dataset.i !== undefined) getPath(P, el.dataset.path)[+el.dataset.i] = v;
+    else setPath(P, el.dataset.path, v);
+    savePricing(); render();
+  }));
+}
+
+function scoreLead(l){
+  let s = 0;
+  s += {asap:40,'1-3':30,'3-6':15,research:0}[l.timeline];
+  s += {yes:30,buying:20,no:-30}[l.owner];
+  if (l.budget) {
+    const b = {'<25':25000,'25-50':50000,'50-100':100000,'100+':150000}[l.budget];
+    s += b >= l.estimate.low ? 20 : 5;
+  } else s += 10;
+  if (l.estimate.high > 50000) s += 10;
+  const grade = s >= 70 ? 'Hot' : s >= 40 ? 'Warm' : 'Nurture';
+  return {score: s, grade};
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function renderLeads(){
+  if (!leads.length) return;
+  $('leadsOut').innerHTML = leads.slice().reverse().map(l => {
+    const cls = {Hot:'b-hot',Warm:'b-warm',Nurture:'b-nurture'}[l.grade];
+    const rec = { submitted: l.submitted, project: 'Kitchen remodel', name: l.name, phone: l.phone, email: l.email, zip: l.zip,
+      timeline: l.timeline, owner: l.owner, budget: l.budget || 'n/a', leadScore: l.score, leadGrade: l.grade,
+      finishLevel: TIERS[l.inputs.tier], estimateRange: usd(l.estimate.low) + ' – ' + usd(l.estimate.high), scope: l.inputs };
+    return `<div style="margin-bottom:18px"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px">
+      <b style="color:var(--ink);font-size:15px">${esc(l.name)} · ${esc(l.zip)}</b><span class="badge ${cls}">${l.grade} · ${l.score}</span></div>
+      <pre>${esc(JSON.stringify(rec, null, 2))}</pre></div>`;
+  }).join('');
+}
+
+document.querySelectorAll('#view-homeowner input, #view-homeowner select').forEach(el => {
+  el.addEventListener('input', render); el.addEventListener('change', render);
+});
+$('layout').addEventListener('change', () => {
+  const d = {galley:[12,10], l:[16,12], u:[22,16]}[$('layout').value];
+  $('baseLf').value = d[0]; $('wallLf').value = d[1]; render();
+});
+$('unlockBtn').addEventListener('click', () => {
+  if (unlocked) { $('unlockBtn').textContent = 'Thanks! A designer will call you to schedule.'; return; }
+  $('modal').classList.add('open');
+});
+$('cancelModal').addEventListener('click', () => $('modal').classList.remove('open'));
+$('leadForm').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const name=$('lName').value.trim(), phone=$('lPhone').value.replace(/\D/g,''), email=$('lEmail').value.trim(), zip=$('lZip').value.trim();
+  let err = '';
+  if (!name) err = 'Please enter your name.';
+  else if (phone.length < 10) err = 'Please enter a 10-digit phone number.';
+  else if (!/^\S+@\S+\.\S+$/.test(email)) err = 'Please enter a valid email.';
+  else if (!/^\d{5}$/.test(zip)) err = 'Please enter a 5-digit ZIP code.';
+  $('lErr').textContent = err;
+  if (err) return;
+  const inputs = readInputs();
+  const est = estimate(inputs, inputs.tier);
+  const lead = { submitted: new Date().toLocaleString(), name, phone, email, zip,
+    timeline: $('lTimeline').value, owner: $('lOwner').value, budget: $('lBudget').value,
+    inputs, estimate: {low: est.low, high: est.high, point: Math.round(est.total)} };
+  Object.assign(lead, scoreLead(lead));
+  leads.push(lead); unlocked = true;
+  $('modal').classList.remove('open');
+  render(); renderLeads();
+});
+document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x===b));
+  ['homeowner','settings','leads'].forEach(v => $('view-'+v).classList.toggle('hidden', v!==b.dataset.view));
+}));
+$('resetPricing').addEventListener('click', () => { P = clone(DEFAULT_PRICING); savePricing(); buildSettings(); render(); $('copyMsg').textContent='Defaults restored.'; });
+$('copyPricing').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(JSON.stringify(P, null, 2)); $('copyMsg').textContent = 'Copied. Paste it into our chat.'; }
+  catch(e){ $('copyMsg').textContent = 'Copy blocked by the browser. Screenshot this table instead.'; }
+});
+
+buildSettings();
+render();
+</script>
+
+<div class="mbar" id="mbar"><div><small>Estimated range</small><b id="mbarRange"></b></div><button type="button" id="mbarBtn">See breakdown</button></div>
+<script>
+(function(){
+  var r=document.getElementById('rangeOut'), m=document.getElementById('mbarRange');
+  function sync(){ m.textContent=r.textContent; }
+  sync(); new MutationObserver(sync).observe(r,{childList:true,characterData:true,subtree:true});
+  document.getElementById('mbarBtn').addEventListener('click',function(){ document.querySelector('aside').scrollIntoView({behavior:'smooth'}); });
+})();
+</script>
+</body>
+</html>
