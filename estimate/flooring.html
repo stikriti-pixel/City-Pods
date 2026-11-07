@@ -306,8 +306,6 @@ let P = clone(DEFAULT_PRICING);
 let unlocked = false, leads = [];
 let rooms = [
   {name:'Living room', len:15, wid:18, mat:'hardwood', old:'carpet'},
-  {name:'Kitchen', len:12, wid:10, mat:'waterproof', old:'vinyl'},
-  {name:'Hallway', len:12, wid:4, mat:'waterproof', old:'carpet'},
 ];
 function clone(o){ return JSON.parse(JSON.stringify(o)); }
 function deepMerge(a,b){ for (const k in b){ if (b[k] && typeof b[k]==='object' && !Array.isArray(b[k]) && a[k]) deepMerge(a[k], b[k]); else a[k]=b[k]; } return a; }

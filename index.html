@@ -471,7 +471,7 @@ footer nav a:hover{color:var(--paper)}
       <button type="button" class="chip" role="tab" aria-pressed="false" aria-selected="false" data-est="basement" data-title="Basement finishing estimator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10l9-6 9 6"/><path d="M5 9v4h14V9"/><path d="M3 13h18v8H3z"/><path d="M7 21v-4h4v4M14 16h4"/></svg>Basement</button>
     </div>
     <div class="est-frame">
-      <iframe id="est-if" src="estimate/bath.html?v=20261106c" title="Bathroom remodel estimator" loading="lazy"></iframe>
+      <iframe id="est-if" src="estimate/bath.html?v=20261107a" title="Bathroom remodel estimator" loading="lazy"></iframe>
     </div>
     <p class="est-note">Estimates are planning ranges, not a contract price. Your fixed-price proposal comes after a free on-site measure and an inspection of existing conditions.</p>
   </div>
@@ -480,7 +480,7 @@ footer nav a:hover{color:var(--paper)}
     var f=document.getElementById('est-if'), tabs=document.querySelectorAll('.est-tabs .chip');
     tabs.forEach(function(t){ t.addEventListener('click', function(){
       tabs.forEach(function(x){ var on=x===t; x.setAttribute('aria-pressed', on); x.setAttribute('aria-selected', on); });
-      f.src='estimate/'+t.dataset.est+'.html?v=20261106c'; f.title=t.dataset.title;
+      f.src='estimate/'+t.dataset.est+'.html?v=20261107a'; f.title=t.dataset.title;
     }); });
   })();
   </script>
